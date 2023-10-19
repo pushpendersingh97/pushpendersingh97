@@ -13,7 +13,7 @@
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-<a href="https://linkedin.com/in/pushpender-singh-3710a5ba" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="pushpender-singh-3710a5ba" height="30" width="40" /></a>
+<a href="https://linkedin.com/in/pushpendersingh97" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="pushpender-singh-3710a5ba" height="30" width="40" /></a>
 <a href="https://instagram.com/pushpender_singh_97" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="pushpender_singh_97" height="30" width="40" /></a>
 </p>
 
