@@ -1,0 +1,181 @@
+// Dark Theme
+.dark-theme {
+  .header-container {
+    color: #fff;
+  }
+
+  .notifi-box {
+    background-color: #000;
+
+    .notifi-item img {
+      background-color: #f5f7fa;
+    }
+
+    .notifi-item:hover {
+      background-color: rgb(238 238 238 / 15%);
+    }
+  }
+
+  &.content-container {
+    background: rgb(23 23 23 / 90%);
+    color: #fff;
+
+    .section-heading {
+      color: #fff;
+    }
+
+    .dashboard-card {
+      background: #000;
+
+      .p-datatable {
+        .p-datatable-thead > tr > th {
+          background-color: #000;
+          color: #fff;
+        }
+
+        .p-sortable-column .p-sortable-column-icon {
+          color: #fff;
+        }
+
+        .p-datatable-tbody > tr {
+          background: #000;
+          color: #fff;
+        }
+      }
+
+    }
+  }
+  
+  .news-card {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .about-wrapper .about-container {
+    color: #fff;
+  }
+
+  .footer {
+    border-top: 1px solid #f5f7fa;
+  }
+
+  .btn.btn-outline-dark {
+    color: #fff;
+    border: 1px solid #fff;
+
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+
+  .MuiPaper-root,
+  .box {
+    background-color: #000;
+    color: #fff;
+
+    .MuiTableCell-root {
+      background-color: #000;
+      color: rgb(255 255 255 / 80%);
+    }
+
+    .MuiButtonBase-root {
+      color: rgba(255, 255, 255, 0.54);
+    }
+
+    .table-card {
+      color: #000;
+    }
+  }
+
+  a {
+    color: #00a3ff;
+  }
+
+  // Input Group
+  .input-group {
+    .input-group-text {
+      border-right: transparent;
+      background-color: #0d0d0d;
+      color: #fff;
+    }
+
+    input.form-control {
+      background-color: #0d0d0d;
+      color: #fff;
+
+      &:focus {
+        border-color: #fff;
+        color: #fff;
+      }
+
+      &::placeholder {
+        color: #fff;
+        opacity: 0.8; /* Firefox */
+      }
+
+      &::-ms-input-placeholder {
+        /* Edge 12 -18 */
+        color: #fff;
+      }
+    }
+  }
+
+  .skeleton-loader-wrapper {
+    background-color: #000;
+
+    --loader-background-color: rgb(30 30 30);
+    --loader-highlight-color: #8f92945c;
+  }
+
+  .plan-card {
+    border: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+    background-color: #000;
+
+    .current-plan-card {
+      width: 350px;
+      height: 450px;
+      border-color: #007bff;
+    }
+
+    .card-text {
+      font-size: 10px;
+      color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .card-btn {
+      background-color: #fff;
+      color: #000;
+
+      &:hover {
+        background-color: #000;
+        color: #000;
+      }
+    }
+
+    &:hover {
+      background-color: #fff;
+      color: #000;
+
+      .card-btn {
+        background-color: #000;
+        color: #fff;
+      }
+
+      .card-text {
+        font-size: 10px;
+        color: #000;
+      }
+    }
+  }
+
+  .table-svg {
+    fill: white;
+  }
+}
+
+.table-svg {
+  fill: black;
+}
