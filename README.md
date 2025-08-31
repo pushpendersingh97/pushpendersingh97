@@ -1,23 +1,20 @@
-<h1 align="center">Hi 👋, I'm Pushpender Singh</h1>
-<h3 align="center">Engineer. Mentor. Innovator in Modern Frontend Development</h3>
+<h1 align="center">Hey 👋, I'm Pushpender Singh</h1>
+<h3 align="center">Engineer | Mentor | Creative</h3>
+<br />
+<br />
+<!-- <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=pushpendersingh97" alt="pushpendersingh97" /></a> </p> -->
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=pushpendersingh97" alt="pushpendersingh97" /></a> </p>
+- 🔭 I’m currently working on **[The Medical Travel Company](https://themedicaltravelcompany.com/)**
 
-- 🔭 I’m currently working on **Agent Portal – TATA AIG**
-
-- 🌱 I’m currently learning **Advanced GSAP Animations, Micro-Frontends, and Web Performance Optimization**
+<!-- - 🌱 I’m currently learning **Advanced GSAP Animations, Micro-Frontends, and Web Performance Optimization** -->
 
 - 👯 I’m looking to collaborate on [Open Source Frontend Utilities](https://github.com/pushpendersingh97)
 
-- 🤝 I’m looking for help with [Interactive UI Libraries using React](mailto:pushpendersingh311@gmail.com)
-
 - 👨‍💻 All of my projects are available at [https://pushpender-portfolio-kohl.vercel.app/](https://pushpender-portfolio-kohl.vercel.app/)
 
-- 💬 Ask me about **React.js,Angular, Javascript and Frontend Architecture**
+- 💬 Ask me about **React.js, Next.js Javascript and Frontend Architecture**
 
-- 📫 How to reach me **pushpendersingh311@gmail.com**
-
-- 📄 Know about my experiences [https://drive.google.com/file/d/16k9wUV_Ig4bXUQndFVHmZJ12AZB086s5/view?usp=sharing](https://drive.google.com/file/d/16k9wUV_Ig4bXUQndFVHmZJ12AZB086s5/view?usp=sharing)
+- 📄 Know about my experiences - [Resume](https://drive.google.com/file/d/16k9wUV_Ig4bXUQndFVHmZJ12AZB086s5/view?usp=sharing)
 
 - ⚡ Fun fact **I think I'm funny — my console logs would disagree 😄**
 
@@ -31,4 +28,4 @@
 
 <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=pushpendersingh97&show_icons=true&locale=en&layout=compact" alt="pushpendersingh97" /></p>
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=pushpendersingh97&" alt="pushpendersingh97" /></p>
+<!-- <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=pushpendersingh97&" alt="pushpendersingh97" /></p> -->
