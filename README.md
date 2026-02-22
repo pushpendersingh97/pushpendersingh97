@@ -1,5 +1,5 @@
 <h1 align="center">Hey 👋, I'm Pushpender Singh</h1>
-<h3 align="center">Engineer | Mentor | Creative</h3>
+<h3 align="center">AI Engineer | Mentor | Explorer</h3>
 <br />
 <br />
 <!-- <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=pushpendersingh97" alt="pushpendersingh97" /></a> </p> -->
