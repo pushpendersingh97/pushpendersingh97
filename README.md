@@ -14,8 +14,6 @@
 
 - 💬 Ask me about **React.js, Next.js Javascript and Frontend Architecture**
 
-- 📄 Know about my experiences - [Resume](https://drive.google.com/file/d/1bKPzu4KZoAO9g5jISwGAUPira7bXu5mr/view?usp=sharing)
-
 - ⚡ Fun fact **I think I'm funny — my console logs would disagree 😄**
 
 <h3 align="left">Connect with me:</h3>
