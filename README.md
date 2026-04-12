@@ -10,11 +10,7 @@
 
 - 👯 I’m looking to collaborate on [Open Source Frontend Utilities](https://github.com/pushpendersingh97)
 
-- 👨‍💻 All of my projects are available at [https://pushpender-portfolio-kohl.vercel.app/](https://pushpender-portfolio-kohl.vercel.app/)
-
 - 💬 Ask me about **React.js, Next.js Javascript and Frontend Architecture**
-
-- ⚡ Fun fact **I think I'm funny — my console logs would disagree 😄**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
