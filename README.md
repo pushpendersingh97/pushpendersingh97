@@ -2,7 +2,7 @@
 <h3 align="center">Prompt Engineer | Frontend Developer</h3>
 <br />
 <br />
-<!-- <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=pushpendersingh97" alt="pushpendersingh97" /></a> </p> -->
+<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=pushpendersingh97" alt="pushpendersingh97" /></a> </p>
 
 - 🔭 I’m currently working on **[The Medical Travel Company](https://themedicaltravelcompany.com/)**
 
