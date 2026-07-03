@@ -4,7 +4,6 @@
 <br />
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=pushpendersingh97" alt="pushpendersingh97" /></a> </p>
 
-
 <!-- - 🌱 I’m currently learning **Advanced GSAP Animations, Micro-Frontends, and Web Performance Optimization** -->
 
 - 👯 I’m looking to collaborate on [Open Source Frontend Utilities](https://github.com/pushpendersingh97)
