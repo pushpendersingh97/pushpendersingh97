@@ -130,7 +130,7 @@ export default function PortfolioEducationContact() {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          © {new Date().getFullYear()} {PROFILE.name} · Built with Next.js & Framer Motion
+          © {new Date().getFullYear()} {PROFILE.name}
         </motion.footer>
       </div>
     </section>
