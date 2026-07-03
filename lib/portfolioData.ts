@@ -11,8 +11,8 @@ export type Experience = {
 export const PROFILE = {
   name: "Pushpender Singh",
   title: "Full Stack Engineer",
-  tagline: "Building & scaling web products with React, Next.js, TypeScript & AI-assisted development",
-  phone: "+919456509722",
+  tagline:
+    "Building & scaling web products with React, Next.js, TypeScript & AI-assisted development",
   email: "pushpendersingh311@gmail.com",
   github: "https://github.com/pushpendersingh97",
   linkedin: "https://www.linkedin.com/in/pushpendersingh97",
@@ -37,13 +37,33 @@ export type FrontendSkill = {
 export const FRONTEND_SKILLS: FrontendSkill[] = [
   { id: "react", label: "React", color: "#61dafb", category: "UI Library" },
   { id: "next", label: "Next.js", color: "#ffffff", category: "Framework" },
-  { id: "typescript", label: "TypeScript", color: "#3178c6", category: "Language" },
-  { id: "tailwind", label: "Tailwind CSS", color: "#38bdf8", category: "Styling" },
-  { id: "framer", label: "Framer Motion", color: "#bb4b96", category: "Animation" },
+  {
+    id: "typescript",
+    label: "TypeScript",
+    color: "#3178c6",
+    category: "Language",
+  },
+  {
+    id: "tailwind",
+    label: "Tailwind CSS",
+    color: "#38bdf8",
+    category: "Styling",
+  },
+  {
+    id: "framer",
+    label: "Framer Motion",
+    color: "#bb4b96",
+    category: "Animation",
+  },
   { id: "redux", label: "Redux", color: "#764abc", category: "State" },
   { id: "mui", label: "Material-UI", color: "#007fff", category: "Components" },
   { id: "angular", label: "Angular", color: "#dd0031", category: "Framework" },
-  { id: "sass", label: "SASS / SCSS", color: "#cd6799", category: "Preprocessor" },
+  {
+    id: "sass",
+    label: "SASS / SCSS",
+    color: "#cd6799",
+    category: "Preprocessor",
+  },
   { id: "html", label: "HTML5", color: "#e34f26", category: "Markup" },
   { id: "css", label: "CSS3", color: "#1572b6", category: "Styling" },
   { id: "graphql", label: "GraphQL", color: "#e535ab", category: "Data Layer" },
