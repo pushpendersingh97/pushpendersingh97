@@ -1,0 +1,22 @@
+---
+description: TMTC website — plan first, ask when unclear, verify docs before coding
+alwaysApply: true
+---
+
+# TMTC Website
+
+Full rules live in `AGENTS.md`. Follow them for every request.
+
+## Before any work
+
+1. Restate the goal, scan the codebase, write a short plan.
+2. **Ask clarifying questions** if scope, design, content, behavior, or acceptance criteria are unclear. Do not guess.
+3. **Read docs before coding** — start with `node_modules/next/dist/docs/`, then official Next.js, React, Tailwind v4, and Framer Motion docs. Docs override training data.
+
+## Stack
+
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · Framer Motion · TypeScript
+
+- Server Components by default; `"use client"` only when needed.
+- Components in `components/`; tokens in `app/globals.css`.
+- Minimal diffs; no commits unless asked.

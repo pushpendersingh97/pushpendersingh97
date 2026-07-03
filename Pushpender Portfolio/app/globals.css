@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.fan-card-center {
+  transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+  transform-origin: 50% 100%;
+}
+
+@keyframes fan-left-collapse {
+  from {
+    transform: translateX(-60px) translateY(0) rotate(-16deg) scale(1);
+  }
+  to {
+    transform: translateX(0) translateY(8px) rotate(0deg) scale(0.96);
+  }
+}
+
+@keyframes fan-right-collapse {
+  from {
+    transform: translateX(60px) translateY(0) rotate(16deg) scale(1);
+  }
+  to {
+    transform: translateX(0) translateY(8px) rotate(0deg) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .fan-stack-track {
+      view-timeline-name: --fan-stack;
+      view-timeline-axis: block;
+    }
+
+    .fan-card-left,
+    .fan-card-right {
+      transform-origin: 50% 100%;
+      animation: fan-left-collapse linear both;
+      animation-timeline: --fan-stack;
+      animation-range: cover 0% cover 70%;
+    }
+
+    .fan-card-right {
+      animation-name: fan-right-collapse;
+    }
+  }
+}
+
+/* ── Portfolio theme ── */
+
+.portfolio-theme {
+  --portfolio-accent: #38bdf8;
+  --portfolio-lime: #c5ff3b;
+}
+
+.portfolio-grid-bg {
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
+}
+
+.portfolio-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #c5ff3b 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: portfolio-gradient-shift 6s ease infinite;
+}
+
+@keyframes portfolio-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-gradient-text {
+    animation: none;
+    background-position: 0% center;
+  }
+}
+
+.portfolio-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0a0e14;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portfolio-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(56, 189, 248, 0.45);
+}
+
+.portfolio-btn-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  animation: portfolio-shine 3s ease infinite;
+}
+
+@keyframes portfolio-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  40%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-btn-shine {
+    animation: none;
+  }
+}
+
+.portfolio-marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+}
+
+.portfolio-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.portfolio-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .portfolio-marquee-track {
+    animation: portfolio-marquee-scroll 36s linear infinite;
+  }
+
+  .portfolio-marquee-track--reverse {
+    animation-direction: reverse;
+    animation-duration: 42s;
+  }
+}
+
+@keyframes portfolio-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-marquee-viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .portfolio-marquee-track {
+    animation: none;
+  }
+}
+
+.skill-orbit-card-inner {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}

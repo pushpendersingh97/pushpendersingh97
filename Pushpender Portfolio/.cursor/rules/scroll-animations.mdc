@@ -1,0 +1,49 @@
+---
+description: Scroll-driven animation patterns that work in this Next.js app
+globs: components/**/*.tsx,hooks/**/*.ts,lib/**/*.ts
+alwaysApply: false
+---
+
+# Scroll Animations
+
+Scroll sections in this project must animate reliably in the browser. Follow these rules.
+
+## Required pattern
+
+1. **Tall track + sticky stage** — outer section uses extra height (e.g. `h-[250vh]`–`h-[420vh]`); inner content uses `sticky top-0 h-svh`.
+2. **Window scroll progress** — compute progress from the section element:
+
+```tsx
+const scrollRange = section.offsetHeight - window.innerHeight;
+const progress = Math.min(Math.max(-rect.top / scrollRange, 0), 1);
+```
+
+3. **Use `bindScrollProgress`** from `@/lib/scrollProgress` (or `useScrollProgress` hook). Listen on **`document`**, not `window` alone.
+4. **Apply transforms directly to DOM nodes** inside the scroll callback (`element.style.transform = ...`). Do not rely on React `setState` per scroll frame.
+5. **Map progress with `mapRange`** from `@/lib/scrollProgress` — never call hooks inside JSX.
+
+## Do not
+
+- Do **not** put `overflow-hidden` on the sticky stage — it clips scaled/scrolling elements and makes the animation look broken.
+- Do **not** use Framer Motion `useScroll` / `useTransform` as the primary driver for sticky scrollytelling. It has been unreliable here.
+- Do **not** call `useTransform` or other hooks inside `style={{}}` or conditional returns.
+- Do **not** use `document.addEventListener("scroll")` without `{ passive: true }`.
+- Do **not** forget `prefers-reduced-motion` — render a static fallback instead of the scroll track.
+
+## Verification checklist
+
+Before finishing scroll animation work:
+
+- [ ] Section height creates enough scroll range (`offsetHeight > window.innerHeight`)
+- [ ] Progress goes `0 → 1` while the sticky stage is pinned
+- [ ] Scroll listener attached via `bindScrollProgress` (retries if DOM not ready)
+- [ ] Transforms applied directly to DOM in scroll callback (not React state each frame)
+- [ ] Manual test: scroll through the section in `npm run dev` and confirm motion
+- [ ] `npm run build` passes
+
+## Reference implementations
+
+- `components/ProviderFanStack.tsx` — CSS `view-timeline` with JS fallback
+- `components/ScrollLinkedParallax.tsx` — linked parallax layers via `applyLinkedLayers`
+- `components/ScrollUnlockStory.tsx` — multi-phase scroll story via `useScrollProgress`
+- `lib/linkedScrollAnimations.ts` — reusable layer config + `applyElementAnimation`
