@@ -56,17 +56,6 @@ export default function PortfolioEducationContact() {
                 <ul className="space-y-3 text-sm">
                   <li>
                     <a
-                      href={`tel:${PROFILE.phone.replace(/\s/g, "")}`}
-                      className="group flex items-center gap-2 text-zinc-400 transition-colors hover:text-sky-300"
-                    >
-                      <span className="inline-block transition-transform group-hover:translate-x-1">
-                        →
-                      </span>
-                      {PROFILE.phone}
-                    </a>
-                  </li>
-                  <li>
-                    <a
                       href={`mailto:${PROFILE.email}`}
                       className="group flex items-center gap-2 text-zinc-400 transition-colors hover:text-sky-300"
                     >
