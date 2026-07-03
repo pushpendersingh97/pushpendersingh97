@@ -1,6 +1,8 @@
 import ProviderFanStack from "@/components/ProviderFanStack";
 import ScrollFramerEffects from "@/components/ScrollFramerEffects";
+import ScrollLinkedParallax from "@/components/ScrollLinkedParallax";
 import ScrollUnlockStory from "@/components/ScrollUnlockStory";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,13 +13,19 @@ export const metadata: Metadata = {
 export default function DemoPage() {
   return (
     <div className="bg-white font-sans text-zinc-900">
-      <nav className="fixed top-4 right-4 z-50">
-        <a
+      <nav className="fixed top-4 right-4 z-50 flex gap-2">
+        <Link
+          href="/effects"
+          className="rounded-full border border-zinc-200 bg-white/90 px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm backdrop-blur-sm transition-colors hover:border-sky-300 hover:text-sky-600"
+        >
+          Scroll effects
+        </Link>
+        <Link
           href="/"
           className="rounded-full border border-zinc-200 bg-white/90 px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm backdrop-blur-sm transition-colors hover:border-sky-300 hover:text-sky-600"
         >
-          ← Portfolio
-        </a>
+          Portfolio
+        </Link>
       </nav>
 
       <section className="flex min-h-svh flex-col items-center justify-center px-6 py-24 text-center">
@@ -36,6 +44,8 @@ export default function DemoPage() {
       <ProviderFanStack />
 
       <ScrollFramerEffects />
+
+      <ScrollLinkedParallax />
 
       <ScrollUnlockStory />
 
