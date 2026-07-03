@@ -10,7 +10,8 @@ import {
 import { useEffect, useRef, useState } from "react";
 
 const CARD_W = 128;
-const CARD_H = 148;
+const ORBIT_STAGE_H = CARD_W * 3 + 80;
+const GRID_STAGE_H = 420;
 const ORBIT_RX = 200;
 const ORBIT_RY = 118;
 
@@ -47,6 +48,7 @@ function SkillCardFace({ skill, compact }: { skill: FrontendSkill; compact?: boo
 }
 
 type OrbitElements = {
+  stageArea: HTMLElement;
   orbitLayer: HTMLElement;
   gridLayer: HTMLElement;
   ring: HTMLElement;
@@ -55,9 +57,11 @@ type OrbitElements = {
   activeCategory: HTMLElement;
   progressFill: HTMLElement;
   cards: HTMLElement[];
+  gridItems: HTMLElement[];
 };
 
 function queryOrbitElements(stage: HTMLElement): OrbitElements | null {
+  const stageArea = stage.querySelector<HTMLElement>('[data-skill-part="stage-area"]');
   const orbitLayer = stage.querySelector<HTMLElement>('[data-skill-part="orbit-layer"]');
   const gridLayer = stage.querySelector<HTMLElement>('[data-skill-part="grid-layer"]');
   const ring = stage.querySelector<HTMLElement>('[data-skill-part="ring"]');
@@ -70,8 +74,12 @@ function queryOrbitElements(stage: HTMLElement): OrbitElements | null {
   const cards = Array.from(
     stage.querySelectorAll<HTMLElement>('[data-skill-part="orbit-card"]'),
   );
+  const gridItems = Array.from(
+    stage.querySelectorAll<HTMLElement>('[data-skill-part="grid-item"]'),
+  );
 
   if (
+    !stageArea ||
     !orbitLayer ||
     !gridLayer ||
     !ring ||
@@ -79,12 +87,14 @@ function queryOrbitElements(stage: HTMLElement): OrbitElements | null {
     !activeLabel ||
     !activeCategory ||
     !progressFill ||
-    cards.length === 0
+    cards.length === 0 ||
+    gridItems.length === 0
   ) {
     return null;
   }
 
   return {
+    stageArea,
     orbitLayer,
     gridLayer,
     ring,
@@ -93,6 +103,7 @@ function queryOrbitElements(stage: HTMLElement): OrbitElements | null {
     activeCategory,
     progressFill,
     cards,
+    gridItems,
   };
 }
 
@@ -104,20 +115,33 @@ function applyOrbitAnimation(
   lastActive: { current: number },
 ) {
   const count = skills.length;
-  const spinT = mapRange(progress, [0.08, 0.72], [0, 1]);
-  const gridT = mapRange(progress, [0.72, 0.92], [0, 1]);
-  const orbitOpacity = 1 - gridT;
-  const gridOpacity = gridT;
+  const spinT = mapRange(progress, [0.08, 0.62], [0, 1]);
+  const orbitExitT = mapRange(progress, [0.62, 0.76], [0, 1]);
+  const gridEnterT = mapRange(progress, [0.74, 0.9], [0, 1]);
+
+  const orbitOpacity = 1 - orbitExitT;
+  const gridOpacity = gridEnterT;
+  const stageHeight =
+    ORBIT_STAGE_H + (GRID_STAGE_H - ORBIT_STAGE_H) * mapRange(progress, [0.68, 0.88], [0, 1]);
 
   elements.progressFill.style.transform = `scaleX(${progress})`;
+  elements.stageArea.style.height = `${stageHeight}px`;
+
   elements.orbitLayer.style.opacity = String(orbitOpacity);
-  elements.orbitLayer.style.pointerEvents = gridT > 0.5 ? "none" : "auto";
+  elements.orbitLayer.style.transform = `scale(${1 - orbitExitT * 0.08})`;
+  elements.orbitLayer.style.visibility = orbitOpacity < 0.02 ? "hidden" : "visible";
+  elements.orbitLayer.style.pointerEvents = gridOpacity > 0.35 ? "none" : "auto";
+
   elements.gridLayer.style.opacity = String(gridOpacity);
-  elements.gridLayer.style.pointerEvents = gridT > 0.5 ? "auto" : "none";
+  elements.gridLayer.style.transform = `translateY(${(1 - gridEnterT) * 18}px) scale(${0.94 + gridEnterT * 0.06})`;
+  elements.gridLayer.style.visibility = gridOpacity < 0.02 ? "hidden" : "visible";
+  elements.gridLayer.style.pointerEvents = gridOpacity > 0.5 ? "auto" : "none";
 
   elements.ring.style.transform = `rotate(${spinT * 360}deg)`;
   elements.ring.style.opacity = String(0.45 * orbitOpacity);
-  elements.activeLabel.style.opacity = String(orbitOpacity * mapRange(progress, [0.06, 0.2], [0, 1]));
+  elements.activeLabel.style.opacity = String(
+    orbitOpacity * mapRange(progress, [0.06, 0.2], [0, 1]),
+  );
   elements.activeCategory.style.opacity = String(
     orbitOpacity * mapRange(progress, [0.1, 0.24], [0, 1]),
   );
@@ -136,7 +160,7 @@ function applyOrbitAnimation(
     if (angleDiff > Math.PI) angleDiff = Math.PI * 2 - angleDiff;
     const spotStrength = Math.max(0, 1 - angleDiff / (Math.PI / 2.4));
     const scale = 0.78 + spotStrength * 0.28;
-    const opacity = 0.45 + spotStrength * 0.55;
+    const opacity = (0.45 + spotStrength * 0.55) * orbitOpacity;
 
     card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale})`;
     card.style.opacity = String(opacity);
@@ -159,7 +183,7 @@ function applyOrbitAnimation(
     }
   });
 
-  if (gridT < 0.35 && activeIndex !== lastActive.current) {
+  if (orbitExitT < 0.35 && activeIndex !== lastActive.current) {
     lastActive.current = activeIndex;
     onActiveChange(activeIndex);
   }
@@ -171,6 +195,12 @@ function applyOrbitAnimation(
   elements.glow.style.transform = `translate3d(calc(-50% + ${glowX}px), calc(-50% + ${glowY}px), 0)`;
   elements.glow.style.opacity = String(0.55 * orbitOpacity * Math.max(bestSpot, 0.35));
   elements.glow.style.backgroundColor = `${skills[activeIndex].color}40`;
+
+  elements.gridItems.forEach((item, i) => {
+    const stagger = mapRange(gridEnterT, [i / count, Math.min(i / count + 0.35, 1)], [0, 1]);
+    item.style.opacity = String(stagger);
+    item.style.transform = `translateY(${(1 - stagger) * 12}px)`;
+  });
 }
 
 export default function PortfolioSkillsFan() {
@@ -249,7 +279,7 @@ export default function PortfolioSkillsFan() {
   return (
     <section
       ref={sectionRef}
-      className="skill-orbit-track relative h-[360vh] w-full"
+      className="skill-orbit-track relative h-[340vh] w-full"
       aria-label="Frontend skills orbital carousel"
     >
       <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-4 py-8 sm:px-6">
@@ -294,12 +324,13 @@ export default function PortfolioSkillsFan() {
           </div>
 
           <div
-            className="relative w-full max-w-3xl"
-            style={{ height: CARD_H * 3 + 48 }}
+            data-skill-part="stage-area"
+            className="relative w-full max-w-3xl will-change-[height]"
+            style={{ height: ORBIT_STAGE_H }}
           >
             <div
               data-skill-part="orbit-layer"
-              className="absolute inset-0 will-change-[opacity]"
+              className="absolute inset-0 origin-center will-change-[opacity,transform]"
             >
               <div
                 data-skill-part="ring"
@@ -328,11 +359,17 @@ export default function PortfolioSkillsFan() {
 
             <div
               data-skill-part="grid-layer"
-              className="absolute inset-0 flex items-center justify-center opacity-0 will-change-[opacity]"
+              className="absolute inset-0 flex items-center justify-center opacity-0 will-change-[opacity,transform]"
+              style={{ visibility: "hidden" }}
             >
-              <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+              <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-3.5 lg:grid-cols-4">
                 {FRONTEND_SKILLS.map((skill) => (
-                  <div key={`grid-${skill.id}`} className="min-w-0">
+                  <div
+                    key={`grid-${skill.id}`}
+                    data-skill-part="grid-item"
+                    className="min-w-0 will-change-[opacity,transform]"
+                    style={{ opacity: 0 }}
+                  >
                     <SkillCardFace skill={skill} compact />
                   </div>
                 ))}
