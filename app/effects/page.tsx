@@ -34,7 +34,7 @@ export default function EffectsHubPage() {
           Scroll effects showcase
         </h1>
         <p className="mt-6 max-w-lg text-lg text-zinc-500">
-          Eleven scroll-driven patterns — each on its own route with reduced-motion
+          Twenty-six scroll-driven patterns — each on its own route with reduced-motion
           fallbacks.
         </p>
       </header>
