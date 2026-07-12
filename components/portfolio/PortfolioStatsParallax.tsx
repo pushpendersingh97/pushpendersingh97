@@ -155,10 +155,7 @@ export default function PortfolioStatsParallax() {
 
           <div className="relative z-10 w-full">
             <div data-stat-part="headline" className="mb-12 text-center will-change-transform">
-              <p className="text-xs tracking-[0.3em] text-sky-400/80 uppercase">
-                Animation · Parallax + counters
-              </p>
-              <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="text-3xl font-bold text-white sm:text-4xl">
                 By the numbers
               </h2>
             </div>

@@ -18,9 +18,8 @@ const ORBIT_RY = 118;
 function SkillCardFace({ skill, compact }: { skill: FrontendSkill; compact?: boolean }) {
   return (
     <div
-      className={`skill-orbit-card-inner overflow-hidden rounded-2xl border border-zinc-700/80 bg-zinc-900/95 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.55)] backdrop-blur-md ${
-        compact ? "p-3" : "p-4"
-      }`}
+      className={`skill-orbit-card-inner overflow-hidden rounded-2xl border border-zinc-700/80 bg-zinc-900/95 shadow-[0_20px_50px_-16px_rgba(0,0,0,0.55)] backdrop-blur-md ${compact ? "p-3" : "p-4"
+        }`}
       style={{
         borderTopColor: skill.color,
         borderTopWidth: 3,
@@ -28,9 +27,8 @@ function SkillCardFace({ skill, compact }: { skill: FrontendSkill; compact?: boo
       }}
     >
       <div
-        className={`flex items-center justify-center rounded-xl font-bold ${
-          compact ? "mb-2 h-8 w-8 text-sm" : "mb-2.5 h-10 w-10 text-sm"
-        }`}
+        className={`flex items-center justify-center rounded-xl font-bold ${compact ? "mb-2 h-8 w-8 text-sm" : "mb-2.5 h-10 w-10 text-sm"
+          }`}
         style={{ backgroundColor: `${skill.color}22`, color: skill.color }}
       >
         {skill.label.charAt(0)}
@@ -285,14 +283,11 @@ export default function PortfolioSkillsFan() {
       <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-4 py-8 sm:px-6">
         <div ref={stageRef} className="relative flex w-full max-w-4xl flex-col items-center">
           <div className="mb-4 text-center">
-            <p className="text-xs tracking-[0.3em] text-sky-400/80 uppercase">
-              Animation · Orbital carousel
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Core technologies
             </h2>
             <p className="mt-2 text-sm text-zinc-500">
-              12 frontend tools · scroll to spin the orbit, then reveal the full grid
+              Frontend tools and frameworks I ship with
             </p>
           </div>
 

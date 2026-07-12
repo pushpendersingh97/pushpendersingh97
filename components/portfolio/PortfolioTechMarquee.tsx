@@ -47,10 +47,6 @@ export default function PortfolioTechMarquee() {
       className="overflow-hidden py-16"
       aria-label="Technology stack marquee"
     >
-      <p className="mb-8 text-center text-xs tracking-[0.3em] text-sky-400/80 uppercase">
-        Animation · Infinite marquee
-      </p>
-
       <MarqueeRow items={TECH_MARQUEE} variant="primary" />
       <div className="mt-4">
         <MarqueeRow items={rowB} reverse variant="muted" />

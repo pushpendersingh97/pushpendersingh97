@@ -157,10 +157,7 @@ export default function PortfolioExperienceScroll() {
       <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-6">
         <div ref={stageRef} className="relative w-full max-w-2xl">
           <div data-exp-part="heading" className="mb-8 text-center">
-            <p className="text-xs tracking-[0.3em] text-sky-400/80 uppercase">
-              Animation · Scroll story
-            </p>
-            <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">
               Career journey
             </h2>
           </div>
