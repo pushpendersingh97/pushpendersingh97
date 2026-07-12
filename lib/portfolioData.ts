@@ -44,6 +44,10 @@ export type Project = {
   name: string;
   period: string;
   description?: string;
+  company?: string;
+  highlights?: string[];
+  tech?: string[];
+  accent?: string;
   url?: string;
 };
 
@@ -305,62 +309,128 @@ export const PROJECTS: Project[] = [
   {
     id: "crm",
     name: "Healthcare CRM",
+    company: "The Medical Travel Company",
     period: "Aug 2025 – Present",
     description:
       "Patient coordination and lead management platform for medical travel operations.",
+    highlights: [
+      "Lead intake and patient coordination workflows",
+      "AI-assisted document and travel tooling",
+      "Built for multi-region medical travel ops",
+    ],
+    tech: ["Next.js", "React", "TypeScript", "Strapi", "Vercel"],
+    accent: "#c5ff3b",
   },
   {
     id: "tmtc-site",
     name: "The Medical Travel Company",
+    company: "TMTC — Marketing Platform",
     period: "Aug 2025 – Present",
     description:
       "Multi-region marketing and content platform with headless CMS and geo routing.",
+    highlights: [
+      "Next.js 16 + Strapi v5 with ISR and webhooks",
+      "Geo-based middleware for localized content",
+      "Reusable blog, profile, and layout components",
+    ],
+    tech: ["Next.js", "Strapi", "GraphQL", "Tailwind", "ISR"],
+    accent: "#38bdf8",
   },
   {
     id: "affiliate",
     name: "Affiliate Portal",
+    company: "The Medical Travel Company",
     period: "Jan 2026 – Present",
     description:
       "Partner workflows and scalable affiliate operations for cross-border medical travel.",
+    highlights: [
+      "Partner onboarding and referral workflows",
+      "Dashboards for affiliate performance",
+      "Designed for business scalability",
+    ],
+    tech: ["Next.js", "React", "TypeScript", "REST"],
+    accent: "#a78bfa",
   },
   {
     id: "ckyc",
     name: "CKYC Microservice",
+    company: "Tata AIG",
     period: "Feb 2025 – Jul 2025",
     description:
       "CKYC integration enabling interoperability across insurance applications.",
+    highlights: [
+      "Shared CKYC flows across multiple apps",
+      "Frontend integration and UX alignment",
+      "Reduced duplicate KYC effort",
+    ],
+    tech: ["React", "Redux", "MUI", "APIs"],
+    accent: "#fb923c",
   },
   {
     id: "user-mgmt",
     name: "User Management Portal",
+    company: "Tata AIG",
     period: "May 2024 – Jul 2025",
+    description:
+      "Agent and admin user management with API-driven workflows and role-based access.",
+    highlights: [
+      "Owned end-to-end frontend delivery",
+      "API integrations and UX discussions",
+      "Role and permission workflows",
+    ],
+    tech: ["React", "MUI", "Redux", "SASS"],
+    accent: "#34d399",
   },
   {
     id: "agent-portal",
     name: "TATA AIG Agent Portal",
+    company: "Tata AIG",
     period: "Nov 2021 – Jul 2025",
     description:
       "Agent-facing portal covering payments, user management, and insurance workflows.",
+    highlights: [
+      "Led Payment and Generic modules",
+      "Mentored juniors and ran SCRUM delivery",
+      "Optimized Lambda footprint across environments",
+    ],
+    tech: ["React", "MUI", "Redux", "Next.js"],
+    accent: "#f472b6",
   },
   {
     id: "expense-tracker",
     name: "React Expense Tracker",
+    company: "Personal",
     period: "Jul 2022",
-    description: "Expense tracker built with React.",
+    description:
+      "Expense tracker built with React for personal budgeting experiments.",
+    highlights: [
+      "Category-based expense tracking",
+      "Clean React component structure",
+    ],
+    tech: ["React", "JavaScript"],
+    accent: "#22d3ee",
     url: "https://github.com/pushpender98/React-Expense-Tracker",
   },
   {
     id: "kanban",
     name: "Kanban Board",
+    company: "Personal",
     period: "Oct 2020 – Dec 2020",
     description: "Drag-and-drop kanban board for arranging tickets.",
+    highlights: ["Drag-and-drop ticket columns", "Lightweight board UX"],
+    tech: ["React", "JavaScript"],
+    accent: "#eab308",
     url: "https://github.com/pushpender98/kanban-board",
   },
   {
     id: "hangman",
     name: "Hangman",
+    company: "Personal",
     period: "Jun 2020 – Jul 2020",
     description: "Hangman game built with TypeScript.",
+    highlights: ["TypeScript game logic", "Keyboard-driven play"],
+    tech: ["TypeScript", "HTML", "CSS"],
+    accent: "#f97316",
     url: "https://github.com/pushpender98/Hangman-Ts",
   },
 ];

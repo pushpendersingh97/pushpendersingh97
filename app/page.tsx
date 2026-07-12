@@ -1,6 +1,7 @@
 import PortfolioEducationContact from "@/components/portfolio/PortfolioEducationContact";
 import PortfolioExperienceScroll from "@/components/portfolio/PortfolioExperienceScroll";
 import PortfolioHero from "@/components/portfolio/PortfolioHero";
+import PortfolioProjectsScroll from "@/components/portfolio/PortfolioProjectsScroll";
 import PortfolioScrollProgress from "@/components/portfolio/PortfolioScrollProgress";
 import PortfolioSkillsFan from "@/components/portfolio/PortfolioSkillsFan";
 import PortfolioStatsParallax from "@/components/portfolio/PortfolioStatsParallax";
@@ -20,6 +21,7 @@ export default function Home() {
       <PortfolioHero />
       <PortfolioSkillsFan />
       <PortfolioExperienceScroll />
+      <PortfolioProjectsScroll />
       <PortfolioStatsParallax />
       <PortfolioTechMarquee />
       <PortfolioEducationContact />
