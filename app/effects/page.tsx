@@ -13,12 +13,6 @@ export default function EffectsHubPage() {
     <div className="portfolio-theme min-h-svh bg-[#0a0e14] text-zinc-100">
       <nav className="fixed top-4 right-4 z-50 flex gap-2">
         <Link
-          href="/demo"
-          className="rounded-full border border-zinc-700 bg-zinc-900/90 px-4 py-2 text-sm font-medium text-zinc-300 backdrop-blur-sm transition-colors hover:border-sky-400/50 hover:text-sky-300"
-        >
-          TMTC demo
-        </Link>
-        <Link
           href="/"
           className="rounded-full border border-zinc-700 bg-zinc-900/90 px-4 py-2 text-sm font-medium text-zinc-300 backdrop-blur-sm transition-colors hover:border-sky-400/50 hover:text-sky-300"
         >

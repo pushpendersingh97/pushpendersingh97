@@ -43,7 +43,7 @@ Before finishing scroll animation work:
 
 ## Reference implementations
 
-- `components/ProviderFanStack.tsx` — CSS `view-timeline` with JS fallback
-- `components/ScrollLinkedParallax.tsx` — linked parallax layers via `applyLinkedLayers`
-- `components/ScrollUnlockStory.tsx` — multi-phase scroll story via `useScrollProgress`
+- `components/portfolio/PortfolioSkillsFan.tsx` — sticky fan stack via `bindScrollProgress`
+- `components/portfolio/PortfolioStatsParallax.tsx` — linked parallax layers via `applyLinkedLayers`
+- `components/portfolio/PortfolioExperienceScroll.tsx` — multi-phase scroll story via `bindScrollProgress`
 - `lib/linkedScrollAnimations.ts` — reusable layer config + `applyElementAnimation`

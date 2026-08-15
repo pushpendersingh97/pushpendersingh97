@@ -64,7 +64,7 @@ If docs conflict with training data, **docs win**.
 - Use `app/` directory conventions.
 - Default to **Server Components**; add `"use client"` only for hooks, browser APIs, Framer Motion, or interactivity.
 - Use `next/image` for images; respect `next.config.ts` settings.
-- Colocate UI in `components/` with clear names (e.g. `ProviderFanStack.tsx`, not `Section1.tsx`).
+- Colocate UI in `components/` with clear names (e.g. `PortfolioSkillsFan.tsx`, not `Section1.tsx`).
 
 ### Styling
 
