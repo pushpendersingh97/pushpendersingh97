@@ -30,7 +30,6 @@ I take web products from idea to something people can use — architecture, UI, 
 | **Full-stack Next.js**       | App Router, ISR, middleware, webhooks, geo routing, technical SEO         |
 | **Headless CMS**             | Strapi v5 + GraphQL/REST, localized content, on-demand revalidation       |
 | **Enterprise frontends**     | Insurance agent portals, payments, user management, CKYC                  |
-| **Performance**              | Cut Lambda footprint from ~40,000 to ~1,700 across Dev/UAT                |
 | **Motion & storytelling UI** | Scroll-driven portfolios, sticky scrollytelling, reduced-motion fallbacks |
 | **AI-first workflows**       | Patient docs, travel coordination, LLM-assisted delivery                  |
 | **Teams**                    | Led 2–3 engineers, mentored juniors, served as Scrum Master               |
