@@ -66,32 +66,6 @@ In 2025 I became **Founding Engineer** at The Medical Travel Company: Next.js 16
 
 ---
 
-## Work shipped
-
-### Production
-
-| Product                                                             | Role                    | Stack                                                    | Outcome                                                           |
-| ------------------------------------------------------------------- | ----------------------- | -------------------------------------------------------- | ----------------------------------------------------------------- |
-| [**TMTC marketing platform**](https://github.com/pushpendersingh97) | Founding Engineer       | Next.js 16, Strapi v5, GraphQL, Tailwind v4, ISR, Vercel | Multi-region content with IP geo routing and webhook revalidation |
-| **Healthcare CRM**                                                  | Founding Engineer       | Next.js, React, TypeScript, Strapi                       | Lead intake, patient coordination, AI document/travel tooling     |
-| **Affiliate Portal**                                                | Founding Engineer       | Next.js, REST                                            | Partner onboarding, referral workflows, performance dashboards    |
-| **Tata AIG Agent Portal**                                           | Senior Engineer / lead  | React, MUI, Redux, Next.js, SASS                         | Payments, generic modules, team of 2–3                            |
-| **User Management Portal**                                          | Frontend owner          | React, MUI, Redux                                        | Role-based agent/admin workflows and API integrations             |
-| **CKYC microservice UI**                                            | Integrator              | React, Redux, APIs                                       | Shared KYC flows across insurance apps                            |
-| **HR Workforce Suite**                                              | Engineer + Scrum Master | Angular, Java, Bootstrap, SCSS                           | Core HR modules + legacy modularization                           |
-
-### Experiments & open source
-
-| Project                                                               | What it is                                                                              |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| **This repo**                                                         | Animated portfolio, 26 scroll-effect studies, client-side DOCX/PDF → Markdown converter |
-| [**netflix-gpt**](https://github.com/pushpendersingh97/netflix-gpt)   | Netflix-style UI with GPT-assisted discovery                                            |
-| [**swiggy-clone**](https://github.com/pushpendersingh97/swiggy-clone) | Food-ordering clone — routing, lists, and app structure                                 |
-| [**Hangman-Ts**](https://github.com/pushpendersingh97/Hangman-Ts)     | TypeScript game logic and keyboard play                                                 |
-| [**kanban**](https://github.com/pushpendersingh97/kanban)             | Drag-and-drop board for arranging work                                                  |
-
----
-
 ## Tech stack
 
 <p align="center">
@@ -106,37 +80,6 @@ In 2025 I became **Founding Engineer** at The Medical Travel Company: Next.js 16
 | **Platform**      | Vercel, ISR / SSG, middleware, geo routing, technical SEO                                        |
 | **Also fluent**   | Angular, Node.js, HTML5 / CSS3, Bootstrap, Java (legacy HR suite)                                |
 | **Delivery**      | Scrum (PSM I), code review, mentoring, 0→1 architecture                                          |
-
----
-
-## This repository
-
-This GitHub profile repo is also a **Next.js 16** site:
-
-| Route      | What you'll find                                                               |
-| ---------- | ------------------------------------------------------------------------------ |
-| `/`        | Scroll portfolio — hero, skills fan, career story, projects, stats             |
-| `/effects` | Twenty-six scroll-driven patterns (timelines, peel cards, SVG draw, geo pins…) |
-| `/convert` | Browser-only Word / PDF / paste → Markdown converter                           |
-
-```bash
-npm install
-npm run dev
-```
-
-Stack here: **Next.js 16 · React 19 · Tailwind CSS v4 · Framer Motion 12 · TypeScript 5**.
-
----
-
-## Education & credentials
-
-- **B.Tech, Computer Science** — Tula's Institute, Dehradun (2015–2019)
-- **Product Management Launchpad** — Airtribe (2023)
-- **Professional Scrum Master I** — Scrum.org
-- **Namaste React** — NamasteDev
-- **Advanced CSS and Sass** · **Understanding TypeScript** · Angular & JavaScript (Udemy)
-
-**Honor:** Role Model for the team — Gemini Solutions, Oct 2022
 
 ---
 
