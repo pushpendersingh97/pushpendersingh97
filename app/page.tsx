@@ -1,11 +1,11 @@
 import SiteNav from "@/components/SiteNav";
 import PortfolioEducationContact from "@/components/portfolio/PortfolioEducationContact";
-import PortfolioExperienceScroll from "@/components/portfolio/PortfolioExperienceScroll";
+import PortfolioExperienceItinerary from "@/components/portfolio/PortfolioExperienceItinerary";
 import PortfolioHero from "@/components/portfolio/PortfolioHero";
-import PortfolioProjectsScroll from "@/components/portfolio/PortfolioProjectsScroll";
+import PortfolioProjectsFolder from "@/components/portfolio/PortfolioProjectsFolder";
 import PortfolioScrollProgress from "@/components/portfolio/PortfolioScrollProgress";
-import PortfolioSkillsFan from "@/components/portfolio/PortfolioSkillsFan";
-import PortfolioStatsParallax from "@/components/portfolio/PortfolioStatsParallax";
+import PortfolioSkillsSwatch from "@/components/portfolio/PortfolioSkillsSwatch";
+import PortfolioStatsStamps from "@/components/portfolio/PortfolioStatsStamps";
 import PortfolioTechMarquee from "@/components/portfolio/PortfolioTechMarquee";
 import type { Metadata } from "next";
 
@@ -21,10 +21,10 @@ export default function Home() {
       <SiteNav className="sticky top-0 z-40" />
       <PortfolioScrollProgress />
       <PortfolioHero />
-      <PortfolioSkillsFan />
-      <PortfolioExperienceScroll />
-      <PortfolioProjectsScroll />
-      <PortfolioStatsParallax />
+      <PortfolioSkillsSwatch />
+      <PortfolioExperienceItinerary />
+      <PortfolioProjectsFolder />
+      <PortfolioStatsStamps />
       <PortfolioTechMarquee />
       <PortfolioEducationContact />
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { PROFILE } from "@/lib/portfolioData";
+import { FRONTEND_SKILLS, PROFILE } from "@/lib/portfolioData";
+import { swatchColor } from "@/lib/swatchColor";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 
@@ -64,6 +65,23 @@ export default function PortfolioHero() {
           {PROFILE.tagline}
         </motion.p>
 
+        <motion.div variants={reducedMotion ? undefined : item}>
+          <a
+            href="#skills"
+            className="mt-8 flex w-fit items-center gap-1.5"
+            aria-label="Browse the colorway"
+          >
+            {FRONTEND_SKILLS.slice(0, 10).map((skill) => (
+              <span
+                key={skill.id}
+                className="h-2.5 w-5 border border-ink/10"
+                style={{ backgroundColor: swatchColor(skill.color) }}
+                title={skill.label}
+              />
+            ))}
+          </a>
+        </motion.div>
+
         <motion.div
           variants={reducedMotion ? undefined : item}
           className="mt-10 flex flex-wrap items-center gap-3"
@@ -97,16 +115,9 @@ export default function PortfolioHero() {
           className="mt-16 flex items-center gap-3"
         >
           <span className="font-mono text-[10px] tracking-[0.25em] text-muted uppercase">
-            Scroll the route
+            Open the dossier
           </span>
-          {!reducedMotion && (
-            <motion.span
-              className="block h-8 w-px origin-top bg-route"
-              animate={{ scaleY: [0.35, 1, 0.35], opacity: [0.35, 1, 0.35] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              aria-hidden
-            />
-          )}
+          <span className="hero-pulse block h-8 w-px origin-top bg-route" aria-hidden />
         </motion.div>
       </motion.div>
     </section>

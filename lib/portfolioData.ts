@@ -6,6 +6,7 @@ export type Experience = {
   period: string;
   highlights: string[];
   tech: string[];
+  accent: string;
 };
 
 export type Education = {
@@ -69,7 +70,7 @@ export const STATS = [
   { label: "Years Experience", value: 7, suffix: "+" },
   { label: "Companies", value: 4, suffix: "" },
   { label: "Products Shipped", value: 12, suffix: "+" },
-  { label: "Teams Led", value: 3, suffix: "" },
+  { label: "People Mentored", value: 10, suffix: "+" },
 ] as const;
 
 export type FrontendSkill = {
@@ -148,6 +149,7 @@ export const EXPERIENCE: Experience[] = [
       "ISR",
       "Vercel",
     ],
+    accent: "#d4572a",
   },
   {
     id: "tata-aig",
@@ -164,6 +166,7 @@ export const EXPERIENCE: Experience[] = [
       "Optimized Lambda functions from ~40,000 to ~1,700 across Dev and UAT environments",
     ],
     tech: ["React", "Material-UI", "Redux", "Next.js", "SASS", "Scrum"],
+    accent: "#1f6f8b",
   },
   {
     id: "gemini",
@@ -179,6 +182,7 @@ export const EXPERIENCE: Experience[] = [
       "Cross-trained teammates to maximize team agility and performance",
     ],
     tech: ["JavaScript", "React", "Angular", "TypeScript", "SASS", "Scrum"],
+    accent: "#3d6b4f",
   },
   {
     id: "catalyst",
@@ -194,6 +198,7 @@ export const EXPERIENCE: Experience[] = [
       "Participated in field testing and led Agile ceremonies for cross-team coordination",
     ],
     tech: ["Angular", "Java", "jQuery", "Bootstrap", "HTML", "SCSS"],
+    accent: "#6b5878",
   },
 ];
 

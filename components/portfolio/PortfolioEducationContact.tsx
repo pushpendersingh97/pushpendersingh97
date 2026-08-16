@@ -99,17 +99,6 @@ export default function PortfolioEducationContact() {
                   </li>
                   <li>
                     <a
-                      href={`tel:${PROFILE.phone.replace(/\s/g, "")}`}
-                      className="group flex items-center gap-2 text-ink/75 transition-colors hover:text-route"
-                    >
-                      <span className="inline-block text-stamp transition-transform group-hover:translate-x-1">
-                        →
-                      </span>
-                      {PROFILE.phone}
-                    </a>
-                  </li>
-                  <li>
-                    <a
                       href={PROFILE.github}
                       target="_blank"
                       rel="noopener noreferrer"
