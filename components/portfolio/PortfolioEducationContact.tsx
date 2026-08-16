@@ -8,6 +8,7 @@ import {
   RECOMMENDATIONS,
 } from "@/lib/portfolioData";
 import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -65,6 +66,17 @@ export default function PortfolioEducationContact() {
               title: "Contact",
               content: (
                 <ul className="space-y-3 text-sm">
+                  <li>
+                    <Link
+                      href="/ask"
+                      className="group flex items-center gap-2 text-zinc-400 transition-colors hover:text-sky-300"
+                    >
+                      <span className="inline-block transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
+                      Ask my public AI twin
+                    </Link>
+                  </li>
                   <li>
                     <a
                       href={`mailto:${PROFILE.email}`}
