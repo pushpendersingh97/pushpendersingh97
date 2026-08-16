@@ -47,7 +47,7 @@ export default function PortfolioExperienceItinerary() {
                         onClick={() =>
                           setOpenId((current) => (current === job.id ? "" : job.id))
                         }
-                        className="flex w-full flex-col items-start px-5 py-5 text-left sm:px-6 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-route"
+                        className="flex w-full cursor-pointer flex-col items-start px-5 py-5 text-left sm:px-6 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-route"
                       >
                         <div className="flex w-full flex-wrap items-center gap-2">
                           <p className="font-mono text-xs text-route">{job.period}</p>

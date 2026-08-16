@@ -35,9 +35,12 @@ export const twinTools = {
     execute: async ({ query }) => searchProjects(query),
   }),
   search_skills: tool({
-    description: "Look up frontend skills and the broader production stack.",
+    description:
+      "Look up skills and the production stack, grouped as Frontend, Backend, and AI tools.",
     inputSchema: z.object({
-      query: z.string().describe("Skill or category, e.g. React, CMS, or animation"),
+      query: z
+        .string()
+        .describe("Skill, group, or layer, e.g. React, Backend, or CMS"),
     }),
     execute: async ({ query }) => searchSkills(query),
   }),
