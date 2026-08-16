@@ -2,6 +2,7 @@
 
 import { PROFILE } from "@/lib/portfolioData";
 import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 
 const ACCENT = "#38bdf8";
 
@@ -85,13 +86,16 @@ export default function PortfolioHero() {
           variants={reducedMotion ? undefined : item}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
+          <Link href="/ask" className="portfolio-btn group">
+            <span className="portfolio-btn-shine" aria-hidden />
+            Ask me
+          </Link>
           <a
             href={PROFILE.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="portfolio-btn group"
+            className="rounded-full border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-300 transition-colors hover:border-sky-500/50 hover:text-sky-300"
           >
-            <span className="portfolio-btn-shine" aria-hidden />
             GitHub
           </a>
           <a

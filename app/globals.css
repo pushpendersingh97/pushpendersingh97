@@ -110,6 +110,34 @@ body {
   }
 }
 
+.twin-markdown p {
+  margin: 0.4em 0;
+}
+
+.twin-markdown p:first-child {
+  margin-top: 0;
+}
+
+.twin-markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.twin-markdown ul,
+.twin-markdown ol {
+  margin: 0.4em 0 0.4em 1.1em;
+}
+
+.twin-markdown a {
+  color: #7dd3fc;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.twin-markdown strong {
+  color: #f4f4f5;
+  font-weight: 600;
+}
+
 .portfolio-btn {
   position: relative;
   overflow: hidden;
