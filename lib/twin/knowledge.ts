@@ -7,6 +7,7 @@ import {
   PROFILE,
   PROJECTS,
   RECOMMENDATIONS,
+  STACK_LAYERS,
   STATS,
   TECH_MARQUEE,
 } from "@/lib/portfolioData";
@@ -89,14 +90,21 @@ export function searchProjects(query: string) {
 
 export function searchSkills(query: string) {
   const skills = FRONTEND_SKILLS.filter((skill) =>
-    matchesQuery(`${skill.label} ${skill.category}`, query),
+    matchesQuery(
+      `${skill.label} ${skill.category} ${skill.group} ${skill.version ?? ""}`,
+      query,
+    ),
   );
   const stack = TECH_MARQUEE.filter((item) => matchesQuery(item, query));
+  const layers = STACK_LAYERS.filter((layer) =>
+    matchesQuery(`${layer.layer} ${layer.tools}`, query),
+  );
 
   return {
     skills: skills.length > 0 ? skills : FRONTEND_SKILLS,
     stack: stack.length > 0 ? stack : TECH_MARQUEE,
-    usedFallback: skills.length === 0 && stack.length === 0,
+    layers: layers.length > 0 ? layers : STACK_LAYERS,
+    usedFallback: skills.length === 0 && stack.length === 0 && layers.length === 0,
   };
 }
 

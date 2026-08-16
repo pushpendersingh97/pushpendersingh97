@@ -6,7 +6,9 @@ alwaysApply: false
 
 # Scroll Animations
 
-Scroll sections in this project must animate reliably in the browser. Follow these rules.
+Sticky scrollytelling is **not** used on the current portfolio page. Prefer click/hover paper interactions (swatch board, itinerary tickets, dossier tabs) unless a request explicitly asks for scroll-pinned stages.
+
+If you do add a scroll-driven section, follow these rules so it animates reliably.
 
 ## Required pattern
 
@@ -43,7 +45,6 @@ Before finishing scroll animation work:
 
 ## Reference implementations
 
-- `components/portfolio/PortfolioSkillsFan.tsx` — sticky fan stack via `bindScrollProgress`
-- `components/portfolio/PortfolioStatsParallax.tsx` — linked parallax layers via `applyLinkedLayers`
-- `components/portfolio/PortfolioExperienceScroll.tsx` — multi-phase scroll story via `bindScrollProgress`
+- `lib/scrollProgress.ts` — `bindScrollProgress` + `mapRange`
 - `lib/linkedScrollAnimations.ts` — reusable layer config + `applyElementAnimation`
+- Portfolio page interactions (not scroll-pinned): `PortfolioSkillsSwatch.tsx`, `PortfolioProjectsFolder.tsx`

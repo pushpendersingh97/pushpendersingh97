@@ -44,7 +44,7 @@ export default function Toolbar({ markdown, fileName, onReset }: ToolbarProps) {
         type="button"
         onClick={handleDownload}
         disabled={!markdown}
-        className="rounded-full bg-sky-500 px-4 py-2 text-sm font-medium text-zinc-950 transition-opacity hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-40"
+        className="portfolio-btn disabled:cursor-not-allowed disabled:opacity-40"
       >
         Download .md
       </button>
@@ -52,15 +52,11 @@ export default function Toolbar({ markdown, fileName, onReset }: ToolbarProps) {
         type="button"
         onClick={handleCopy}
         disabled={!markdown}
-        className="rounded-full border border-zinc-600 px-4 py-2 text-sm font-medium text-zinc-100 transition-colors hover:border-sky-400 hover:text-sky-300 disabled:cursor-not-allowed disabled:opacity-40"
+        className="portfolio-btn-outline disabled:cursor-not-allowed disabled:opacity-40"
       >
         {copied ? "Copied" : "Copy"}
       </button>
-      <button
-        type="button"
-        onClick={onReset}
-        className="rounded-full border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:border-zinc-500 hover:text-zinc-200"
-      >
+      <button type="button" onClick={onReset} className="portfolio-btn-outline">
         Start over
       </button>
     </div>

@@ -11,8 +11,8 @@ function MarqueeRow({
 }) {
   const chipClass =
     variant === "primary"
-      ? "rounded-full border border-zinc-700/80 bg-zinc-900/80 px-5 py-2.5 text-sm font-medium text-zinc-300 backdrop-blur-sm"
-      : "rounded-full border border-zinc-800 bg-zinc-950/80 px-5 py-2.5 text-sm text-zinc-500";
+      ? "border border-grid bg-paper px-5 py-2.5 font-mono text-sm font-medium text-ink"
+      : "border border-grid/70 bg-transparent px-5 py-2.5 font-mono text-sm text-muted";
 
   return (
     <div className="portfolio-marquee-viewport">
@@ -44,7 +44,7 @@ export default function PortfolioTechMarquee() {
   return (
     <section
       id="marquee"
-      className="overflow-hidden py-16"
+      className="overflow-hidden border-y border-grid py-16"
       aria-label="Technology stack marquee"
     >
       <MarqueeRow items={TECH_MARQUEE} variant="primary" />

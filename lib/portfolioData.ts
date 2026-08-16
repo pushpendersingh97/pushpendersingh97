@@ -6,6 +6,7 @@ export type Experience = {
   period: string;
   highlights: string[];
   tech: string[];
+  accent: string;
 };
 
 export type Education = {
@@ -69,59 +70,240 @@ export const STATS = [
   { label: "Years Experience", value: 7, suffix: "+" },
   { label: "Companies", value: 4, suffix: "" },
   { label: "Products Shipped", value: 12, suffix: "+" },
-  { label: "Teams Led", value: 3, suffix: "" },
+  { label: "People Mentored", value: 10, suffix: "+" },
 ] as const;
+
+export const SKILL_GROUPS = ["Frontend", "Backend", "AI tools"] as const;
+export type SkillGroup = (typeof SKILL_GROUPS)[number];
 
 export type FrontendSkill = {
   id: string;
   label: string;
   color: string;
   category: string;
+  group: SkillGroup;
+  version?: string;
+  /** 1–5. 4 = production layer; 3 = also fluent. Not sourced from a scored CV. */
+  rating: 1 | 2 | 3 | 4 | 5;
 };
 
 export const FRONTEND_SKILLS: FrontendSkill[] = [
-  { id: "react", label: "React", color: "#61dafb", category: "UI Library" },
-  { id: "next", label: "Next.js", color: "#ffffff", category: "Framework" },
+  {
+    id: "react",
+    label: "React",
+    color: "#61dafb",
+    category: "UI Library",
+    group: "Frontend",
+    version: "v19",
+    rating: 4,
+  },
+  {
+    id: "next",
+    label: "Next.js",
+    color: "#ffffff",
+    category: "Framework",
+    group: "Frontend",
+    version: "v16",
+    rating: 4,
+  },
   {
     id: "typescript",
     label: "TypeScript",
     color: "#3178c6",
     category: "Language",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "javascript",
+    label: "JavaScript",
+    color: "#f7df1e",
+    category: "Language",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "html",
+    label: "HTML5",
+    color: "#e34f26",
+    category: "Markup",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "css",
+    label: "CSS3",
+    color: "#1572b6",
+    category: "Styling",
+    group: "Frontend",
+    rating: 4,
   },
   {
     id: "tailwind",
     label: "Tailwind CSS",
     color: "#38bdf8",
     category: "Styling",
-  },
-  {
-    id: "framer",
-    label: "Framer Motion",
-    color: "#bb4b96",
-    category: "Animation",
-  },
-  { id: "redux", label: "Redux", color: "#764abc", category: "State" },
-  { id: "mui", label: "Material-UI", color: "#007fff", category: "Components" },
-  { id: "angular", label: "Angular", color: "#dd0031", category: "Framework" },
-  {
-    id: "nodejs",
-    label: "Node.js",
-    color: "#339933",
-    category: "Runtime",
+    group: "Frontend",
+    version: "v4",
+    rating: 4,
   },
   {
     id: "sass",
     label: "SASS / SCSS",
     color: "#cd6799",
     category: "Preprocessor",
+    group: "Frontend",
+    rating: 4,
   },
-  { id: "html", label: "HTML5", color: "#e34f26", category: "Markup" },
-  { id: "css", label: "CSS3", color: "#1572b6", category: "Styling" },
-  { id: "graphql", label: "GraphQL", color: "#e535ab", category: "Data Layer" },
+  {
+    id: "redux",
+    label: "Redux Toolkit",
+    color: "#764abc",
+    category: "State",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "mui",
+    label: "Material-UI",
+    color: "#007fff",
+    category: "Components",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "framer",
+    label: "Framer Motion",
+    color: "#bb4b96",
+    category: "Animation",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "angular",
+    label: "Angular",
+    color: "#dd0031",
+    category: "Framework",
+    group: "Frontend",
+    rating: 3,
+  },
+  {
+    id: "bootstrap",
+    label: "Bootstrap",
+    color: "#7952b3",
+    category: "Components",
+    group: "Frontend",
+    rating: 3,
+  },
+  {
+    id: "figma",
+    label: "Figma",
+    color: "#f24e1e",
+    category: "Design",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "nodejs",
+    label: "Node.js",
+    color: "#339933",
+    category: "Runtime",
+    group: "Backend",
+    rating: 4,
+  },
+  {
+    id: "graphql",
+    label: "GraphQL",
+    color: "#e535ab",
+    category: "Data layer",
+    group: "Backend",
+    rating: 4,
+  },
+  {
+    id: "strapi",
+    label: "Strapi",
+    color: "#4945ff",
+    category: "CMS",
+    group: "Backend",
+    version: "v5",
+    rating: 4,
+  },
+  {
+    id: "git",
+    label: "Git",
+    color: "#f05032",
+    category: "Version control",
+    group: "Frontend",
+    rating: 4,
+  },
+  {
+    id: "vercel",
+    label: "Vercel",
+    color: "#000000",
+    category: "Platform",
+    group: "Backend",
+    rating: 4,
+  },
+  {
+    id: "cursor",
+    label: "Cursor",
+    color: "#000000",
+    category: "Editor",
+    group: "AI tools",
+    rating: 4,
+  },
+  {
+    id: "claude",
+    label: "Claude",
+    color: "#d4a27f",
+    category: "Assistant",
+    group: "AI tools",
+    rating: 4,
+  },
+  {
+    id: "codex",
+    label: "Codex",
+    color: "#10a37f",
+    category: "Coding agent",
+    group: "AI tools",
+    rating: 4,
+  },
 ];
 
 /** @deprecated Use FRONTEND_SKILLS */
 export const CORE_SKILLS = FRONTEND_SKILLS.slice(0, 6);
+
+export const STACK_LAYERS = [
+  {
+    layer: "UI",
+    tools:
+      "React 19, Next.js 16 (App Router), TypeScript, Tailwind CSS v4, SASS, Material-UI, Framer Motion",
+  },
+  {
+    layer: "State & data",
+    tools: "Redux Toolkit, GraphQL, REST, native fetch, Server Actions",
+  },
+  {
+    layer: "CMS & content",
+    tools: "Strapi v5, i18n, draft/preview, media, webhook invalidation",
+  },
+  {
+    layer: "Platform",
+    tools: "Vercel, ISR / SSG, middleware, geo routing, technical SEO",
+  },
+  {
+    layer: "Also fluent",
+    tools: "Angular, Node.js, HTML5 / CSS3, Bootstrap",
+  },
+  {
+    layer: "AI tools",
+    tools: "Cursor, Claude, Codex",
+  },
+  {
+    layer: "Delivery",
+    tools: "Scrum (PSM I), code review, mentoring, 0→1 architecture",
+  },
+] as const;
 
 export const EXPERIENCE: Experience[] = [
   {
@@ -148,6 +330,7 @@ export const EXPERIENCE: Experience[] = [
       "ISR",
       "Vercel",
     ],
+    accent: "#d4572a",
   },
   {
     id: "tata-aig",
@@ -164,6 +347,7 @@ export const EXPERIENCE: Experience[] = [
       "Optimized Lambda functions from ~40,000 to ~1,700 across Dev and UAT environments",
     ],
     tech: ["React", "Material-UI", "Redux", "Next.js", "SASS", "Scrum"],
+    accent: "#1f6f8b",
   },
   {
     id: "gemini",
@@ -179,6 +363,7 @@ export const EXPERIENCE: Experience[] = [
       "Cross-trained teammates to maximize team agility and performance",
     ],
     tech: ["JavaScript", "React", "Angular", "TypeScript", "SASS", "Scrum"],
+    accent: "#3d6b4f",
   },
   {
     id: "catalyst",
@@ -194,6 +379,7 @@ export const EXPERIENCE: Experience[] = [
       "Participated in field testing and led Agile ceremonies for cross-team coordination",
     ],
     tech: ["Angular", "Java", "jQuery", "Bootstrap", "HTML", "SCSS"],
+    accent: "#6b5878",
   },
 ];
 
@@ -335,6 +521,7 @@ export const PROJECTS: Project[] = [
     ],
     tech: ["Next.js", "Strapi", "GraphQL", "Tailwind", "ISR"],
     accent: "#38bdf8",
+    url: "https://themedicaltravelcompany.com",
   },
   {
     id: "affiliate",
@@ -397,21 +584,6 @@ export const PROJECTS: Project[] = [
     accent: "#f472b6",
   },
   {
-    id: "expense-tracker",
-    name: "React Expense Tracker",
-    company: "Personal",
-    period: "Jul 2022",
-    description:
-      "Expense tracker built with React for personal budgeting experiments.",
-    highlights: [
-      "Category-based expense tracking",
-      "Clean React component structure",
-    ],
-    tech: ["React", "JavaScript"],
-    accent: "#22d3ee",
-    url: "https://github.com/pushpender98/React-Expense-Tracker",
-  },
-  {
     id: "kanban",
     name: "Kanban Board",
     company: "Personal",
@@ -439,6 +611,7 @@ export const TECH_MARQUEE = [
   "Next.js 16",
   "React 19",
   "TypeScript",
+  "JavaScript",
   "Tailwind CSS v4",
   "Framer Motion",
   "Redux Toolkit",
@@ -450,13 +623,20 @@ export const TECH_MARQUEE = [
   "Strapi v5",
   "GraphQL",
   "REST APIs",
+  "Server Actions",
   "ISR / SSG",
   "Vercel",
+  "Git",
+  "Figma",
+  "Bootstrap",
   "Technical SEO",
   "i18n",
   "App Router",
   "Webhooks",
   "Geo Routing",
+  "Cursor",
+  "Claude",
+  "Codex",
   "AI Workflows",
   "Scrum",
 ];

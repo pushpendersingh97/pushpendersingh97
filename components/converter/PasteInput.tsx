@@ -73,11 +73,11 @@ export default function PasteInput({ disabled = false, onConvert }: PasteInputPr
   }, [runConvert]);
 
   return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5">
-      <label htmlFor="paste-input" className="text-sm font-medium text-zinc-200">
+    <div className="atlas-ticket p-5">
+      <label htmlFor="paste-input" className="text-sm font-medium text-ink">
         Paste content
       </label>
-      <p className="mt-1 text-sm text-zinc-500">
+      <p className="mt-1 text-sm text-muted">
         Paste from Word, Google Docs, a webpage, or plain text. Rich formatting
         converts to Markdown when HTML is available.
       </p>
@@ -92,7 +92,7 @@ export default function PasteInput({ disabled = false, onConvert }: PasteInputPr
         }}
         onPaste={handlePaste}
         placeholder="Ctrl+V to paste here, or type markdown / plain text…"
-        className="mt-4 min-h-36 w-full resize-y rounded-xl border border-zinc-700 bg-zinc-950/80 px-4 py-3 font-mono text-sm leading-relaxed text-zinc-100 outline-none transition-colors placeholder:text-zinc-600 focus:border-sky-500/60 disabled:opacity-60"
+        className="mt-4 min-h-36 w-full resize-y border border-grid bg-paper px-4 py-3 font-mono text-sm leading-relaxed text-ink outline-none transition-colors placeholder:text-muted focus:border-route disabled:opacity-60"
       />
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -100,7 +100,7 @@ export default function PasteInput({ disabled = false, onConvert }: PasteInputPr
           type="button"
           disabled={disabled || !value.trim()}
           onClick={handleConvert}
-          className="rounded-full bg-sky-500 px-4 py-2 text-sm font-medium text-zinc-950 transition-opacity hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-40"
+          className="portfolio-btn disabled:cursor-not-allowed disabled:opacity-40"
         >
           Convert to Markdown
         </button>
@@ -108,14 +108,14 @@ export default function PasteInput({ disabled = false, onConvert }: PasteInputPr
           type="button"
           disabled={disabled}
           onClick={handlePasteFromClipboard}
-          className="rounded-full border border-zinc-600 px-4 py-2 text-sm font-medium text-zinc-100 transition-colors hover:border-sky-400 hover:text-sky-300 disabled:cursor-not-allowed disabled:opacity-40"
+          className="portfolio-btn-outline disabled:cursor-not-allowed disabled:opacity-40"
         >
           Paste from clipboard
         </button>
       </div>
 
       {clipboardError ? (
-        <p className="mt-3 text-sm text-amber-400/90">{clipboardError}</p>
+        <p className="mt-3 text-sm text-stamp">{clipboardError}</p>
       ) : null}
     </div>
   );
