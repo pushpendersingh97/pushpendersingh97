@@ -1,12 +1,22 @@
 "use client";
 
+import { TWIN_CONTEXT_WINDOW } from "@/lib/twin/limits";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const twinTransport = new DefaultChatTransport({ api: "/api/twin" });
+const twinTransport = new DefaultChatTransport({
+  api: "/api/twin",
+  prepareSendMessagesRequest: ({ id, messages, body }) => ({
+    body: {
+      ...body,
+      id,
+      messages: messages.slice(-TWIN_CONTEXT_WINDOW),
+    },
+  }),
+});
 
 const SUGGESTED_PROMPTS = [
   "What are you working on now?",
@@ -24,12 +34,43 @@ function messageText(parts: { type: string; text?: string }[]): string {
 
 export default function TwinChat() {
   const [input, setInput] = useState("");
-  const { messages, sendMessage, status, stop, error, regenerate } = useChat({
-    transport: twinTransport,
-    throttle: 50,
-  });
+  const { messages, sendMessage, status, stop, error, regenerate, setMessages, clearError } =
+    useChat({
+      transport: twinTransport,
+      throttle: 50,
+    });
 
   const busy = status === "submitted" || status === "streaming";
+  const newChatDialogRef = useRef<HTMLDialogElement>(null);
+  const threadRef = useRef<HTMLDivElement>(null);
+  const pinToBottomRef = useRef(true);
+
+  function scrollThreadToBottom(behavior: ScrollBehavior = "auto") {
+    const thread = threadRef.current;
+    if (!thread) {
+      return;
+    }
+
+    thread.scrollTo({ top: thread.scrollHeight, behavior });
+  }
+
+  function startNewChat() {
+    if (busy) {
+      stop();
+    }
+    setMessages([]);
+    clearError();
+    setInput("");
+  }
+
+  function requestNewChat() {
+    newChatDialogRef.current?.showModal();
+  }
+
+  function confirmNewChat() {
+    startNewChat();
+    newChatDialogRef.current?.close();
+  }
 
   function submitPrompt(text: string) {
     const trimmed = text.trim();
@@ -37,15 +78,80 @@ export default function TwinChat() {
       return;
     }
 
+    pinToBottomRef.current = true;
     void sendMessage({ text: trimmed });
     setInput("");
   }
 
+  useLayoutEffect(() => {
+    if (!pinToBottomRef.current) {
+      return;
+    }
+
+    scrollThreadToBottom();
+  }, [messages, status]);
+
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
-      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-4 overflow-y-auto px-4 py-6">
+    <div className="relative flex min-h-0 flex-1 flex-col">
+      {messages.length > 0 ? (
+        <button
+          type="button"
+          onClick={requestNewChat}
+          className="absolute right-4 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] z-30 flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900/90 text-zinc-100 shadow-lg shadow-black/40 backdrop-blur-sm transition-colors hover:border-sky-500/50 hover:text-sky-300"
+          aria-label="New chat"
+        >
+          <span aria-hidden="true" className="text-2xl leading-none font-light">
+            +
+          </span>
+        </button>
+      ) : null}
+
+      <dialog
+        ref={newChatDialogRef}
+        aria-labelledby="twin-new-chat-title"
+        className="m-auto w-[min(calc(100%-2rem),24rem)] rounded-3xl border border-zinc-800 bg-[#0a0e14] p-6 text-zinc-100 shadow-2xl outline-none backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) {
+            event.currentTarget.close();
+          }
+        }}
+      >
+        <form method="dialog">
+          <h2 id="twin-new-chat-title" className="text-lg font-semibold tracking-tight">
+            Start a new chat?
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            This clears the current conversation.
+          </p>
+          <div className="mt-5 flex justify-end gap-2">
+            <button
+              type="submit"
+              className="rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-sky-500/50 hover:text-sky-300"
+            >
+              Cancel
+            </button>
+            <button type="button" onClick={confirmNewChat} className="portfolio-btn px-4 py-2">
+              New chat
+            </button>
+          </div>
+        </form>
+      </dialog>
+
+      <div
+        ref={threadRef}
+        className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-4 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4 py-6 pb-20"
+        onScroll={() => {
+          const thread = threadRef.current;
+          if (!thread) {
+            return;
+          }
+
+          pinToBottomRef.current =
+            thread.scrollHeight - thread.scrollTop - thread.clientHeight < 80;
+        }}
+      >
         {messages.length === 0 ? (
-          <div className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900/40 p-6">
+          <div className="rounded-3xl border border-zinc-800 bg-zinc-900/40 p-6">
             <p className="text-sm leading-relaxed text-zinc-400">
               Ask about roles, projects, stack, or how to reach me. Answers come from my
               public profile — this is not me live.
@@ -117,12 +223,18 @@ export default function TwinChat() {
       </div>
 
       <form
-        className="border-t border-zinc-800 bg-[#0a0e14]/90 px-4 py-4 backdrop-blur-sm"
+        className="sticky bottom-0 z-20 shrink-0 border-t border-zinc-800 bg-[#0a0e14]/90 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
         onSubmit={(event) => {
           event.preventDefault();
           submitPrompt(input);
         }}
       >
+        {messages.length >= TWIN_CONTEXT_WINDOW ? (
+          <p className="mx-auto mb-3 max-w-2xl text-xs text-zinc-500">
+            I only keep the last few questions in mind. Start a new chat if you want a
+            clean slate.
+          </p>
+        ) : null}
         <div className="mx-auto flex max-w-2xl gap-2">
           <label className="sr-only" htmlFor="twin-question">
             Ask a question

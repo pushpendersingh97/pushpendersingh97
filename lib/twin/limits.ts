@@ -1,0 +1,3 @@
+export const TWIN_CONTEXT_WINDOW = 8;
+export const TWIN_MAX_MESSAGE_CHARS = 2000;
+export const TWIN_MAX_REQUEST_MESSAGES = 100;

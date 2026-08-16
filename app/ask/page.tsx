@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function AskPage() {
   return (
-    <div className="portfolio-theme flex min-h-svh flex-col bg-[#0a0e14] text-zinc-100">
-      <header className="border-b border-zinc-800 px-4 py-4">
+    <div className="portfolio-theme flex h-svh flex-col overflow-hidden bg-[#0a0e14] text-zinc-100">
+      <header className="shrink-0 border-b border-zinc-800 px-4 py-4">
         <div className="mx-auto flex max-w-2xl items-center justify-between gap-4">
           <div>
             <p className="text-[10px] tracking-[0.3em] text-sky-400 uppercase">
