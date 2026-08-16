@@ -1,7 +1,6 @@
 "use client";
 
-import { FRONTEND_SKILLS, PROFILE } from "@/lib/portfolioData";
-import { swatchColor } from "@/lib/swatchColor";
+import { PROFILE } from "@/lib/portfolioData";
 import { useTwinChat } from "@/components/twin/TwinChatWidget";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -65,23 +64,6 @@ export default function PortfolioHero() {
         >
           {PROFILE.tagline}
         </motion.p>
-
-        <motion.div variants={reducedMotion ? undefined : item}>
-          <a
-            href="#skills"
-            className="mt-8 flex w-fit items-center gap-1.5"
-            aria-label="Browse the colorway"
-          >
-            {FRONTEND_SKILLS.slice(0, 10).map((skill) => (
-              <span
-                key={skill.id}
-                className="h-2.5 w-5 border border-ink/10"
-                style={{ backgroundColor: swatchColor(skill.color) }}
-                title={skill.label}
-              />
-            ))}
-          </a>
-        </motion.div>
 
         <motion.div
           variants={reducedMotion ? undefined : item}
