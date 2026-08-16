@@ -1,12 +1,10 @@
 <!-- BEGIN:nextjs-agent-rules -->
+
 # This is NOT the Next.js you know
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+
 <!-- END:nextjs-agent-rules -->
-
-# TMTC Website — Agent Instructions
-
-You are working on **tmtc-website**, a Next.js marketing/content site. Follow these rules for **every** user request — features, fixes, refactors, questions, and reviews.
 
 ## 1. Understand before you act
 
@@ -87,13 +85,13 @@ If docs conflict with training data, **docs win**.
 
 ## 5. Request types
 
-| Request type | Action |
-| --- | --- |
-| New feature | Plan → questions → docs → implement |
-| Bug fix | Reproduce → root cause → minimal fix |
-| “How does X work?” | Read code + docs → explain with file references |
-| Animation / UI | Confirm reference → Framer Motion + Tailwind → test scroll/mobile |
-| Dependency add | Check compatibility with Next 16 / React 19 → document why |
+| Request type       | Action                                                            |
+| ------------------ | ----------------------------------------------------------------- |
+| New feature        | Plan → questions → docs → implement                               |
+| Bug fix            | Reproduce → root cause → minimal fix                              |
+| “How does X work?” | Read code + docs → explain with file references                   |
+| Animation / UI     | Confirm reference → Framer Motion + Tailwind → test scroll/mobile |
+| Dependency add     | Check compatibility with Next 16 / React 19 → document why        |
 
 ## 6. Output expectations
 

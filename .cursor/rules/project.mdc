@@ -1,9 +1,7 @@
 ---
-description: TMTC website — plan first, ask when unclear, verify docs before coding
+description: Plan first, ask when unclear, verify docs before coding
 alwaysApply: true
 ---
-
-# TMTC Website
 
 Full rules live in `AGENTS.md`. Follow them for every request.
 
