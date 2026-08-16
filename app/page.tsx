@@ -1,4 +1,3 @@
-import SiteNav from "@/components/SiteNav";
 import PortfolioEducationContact from "@/components/portfolio/PortfolioEducationContact";
 import PortfolioExperienceItinerary from "@/components/portfolio/PortfolioExperienceItinerary";
 import PortfolioHero from "@/components/portfolio/PortfolioHero";
@@ -7,6 +6,7 @@ import PortfolioScrollProgress from "@/components/portfolio/PortfolioScrollProgr
 import PortfolioSkillsSwatch from "@/components/portfolio/PortfolioSkillsSwatch";
 import PortfolioStatsStamps from "@/components/portfolio/PortfolioStatsStamps";
 import PortfolioTechMarquee from "@/components/portfolio/PortfolioTechMarquee";
+import { TwinChatProvider, TwinChatWidget } from "@/components/twin/TwinChatWidget";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,16 +17,18 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="portfolio-theme min-h-svh">
-      <SiteNav className="sticky top-0 z-40" />
-      <PortfolioScrollProgress />
-      <PortfolioHero />
-      <PortfolioSkillsSwatch />
-      <PortfolioExperienceItinerary />
-      <PortfolioProjectsFolder />
-      <PortfolioStatsStamps />
-      <PortfolioTechMarquee />
-      <PortfolioEducationContact />
-    </div>
+    <TwinChatProvider>
+      <div className="portfolio-theme min-h-svh">
+        <PortfolioScrollProgress />
+        <PortfolioHero />
+        <PortfolioSkillsSwatch />
+        <PortfolioExperienceItinerary />
+        <PortfolioProjectsFolder />
+        <PortfolioStatsStamps />
+        <PortfolioTechMarquee />
+        <PortfolioEducationContact />
+        <TwinChatWidget />
+      </div>
+    </TwinChatProvider>
   );
 }

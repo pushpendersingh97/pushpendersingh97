@@ -2,8 +2,8 @@
 
 import { FRONTEND_SKILLS, PROFILE } from "@/lib/portfolioData";
 import { swatchColor } from "@/lib/swatchColor";
+import { useTwinChat } from "@/components/twin/TwinChatWidget";
 import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
 
 const container = {
   hidden: {},
@@ -23,11 +23,12 @@ const item = {
 
 export default function PortfolioHero() {
   const reducedMotion = useReducedMotion();
+  const { open } = useTwinChat();
 
   return (
     <section
       id="hero"
-      className="portfolio-gutter relative flex min-h-[calc(100svh-3.5rem)] flex-col justify-center overflow-hidden py-20"
+      className="portfolio-gutter relative flex min-h-svh flex-col justify-center overflow-hidden py-20"
     >
       <div className="portfolio-grid-bg pointer-events-none absolute inset-0" aria-hidden />
 
@@ -86,9 +87,9 @@ export default function PortfolioHero() {
           variants={reducedMotion ? undefined : item}
           className="mt-10 flex flex-wrap items-center gap-3"
         >
-          <Link href="/ask" className="portfolio-btn">
+          <button type="button" onClick={open} className="portfolio-btn">
             Ask the twin
-          </Link>
+          </button>
           <a href={`mailto:${PROFILE.email}`} className="portfolio-btn-outline">
             Email
           </a>

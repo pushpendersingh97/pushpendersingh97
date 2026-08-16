@@ -32,7 +32,13 @@ function messageText(parts: { type: string; text?: string }[]): string {
     .join("");
 }
 
-export default function TwinChat() {
+export default function TwinChat({
+  variant = "page",
+}: {
+  variant?: "page" | "panel";
+}) {
+  const isPanel = variant === "panel";
+  const inputId = isPanel ? "twin-question-panel" : "twin-question";
   const [input, setInput] = useState("");
   const { messages, sendMessage, status, stop, error, regenerate, setMessages, clearError } =
     useChat({
@@ -97,7 +103,11 @@ export default function TwinChat() {
         <button
           type="button"
           onClick={requestNewChat}
-          className="absolute right-4 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] z-30 flex h-11 w-11 items-center justify-center border border-grid bg-paper text-ink shadow-sm transition-colors hover:border-route hover:text-route"
+          className={`absolute z-30 flex h-11 w-11 items-center justify-center border border-grid bg-paper text-ink shadow-sm transition-colors hover:border-route hover:text-route ${
+            isPanel
+              ? "right-3 bottom-[4.5rem]"
+              : "right-4 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))]"
+          }`}
           aria-label="New chat"
         >
           <span aria-hidden="true" className="text-2xl leading-none font-light">
@@ -139,7 +149,9 @@ export default function TwinChat() {
 
       <div
         ref={threadRef}
-        className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-4 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4 py-6 pb-20"
+        className={`min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${
+          isPanel ? "px-4 py-4" : "portfolio-gutter py-6 pb-20"
+        }`}
         onScroll={() => {
           const thread = threadRef.current;
           if (!thread) {
@@ -150,117 +162,125 @@ export default function TwinChat() {
             thread.scrollHeight - thread.scrollTop - thread.clientHeight < 80;
         }}
       >
-        {messages.length === 0 ? (
-          <div className="atlas-ticket p-6">
-            <p className="text-sm leading-relaxed text-ink/75">
-              Ask about roles, projects, stack, or how to reach me. Answers come from my
-              public profile — this is not me live.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {SUGGESTED_PROMPTS.map((prompt) => (
-                <button
-                  key={prompt}
-                  type="button"
-                  onClick={() => submitPrompt(prompt)}
-                  className="border border-grid bg-paper px-3 py-1.5 text-left font-mono text-xs text-ink transition-colors hover:border-route hover:text-route"
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
-        {messages.map((message) => {
-          const text = messageText(message.parts);
-          if (!text) {
-            return null;
-          }
-
-          const isUser = message.role === "user";
-
-          return (
-            <article
-              key={message.id}
-              className={
-                isUser
-                  ? "ml-8 border border-route/30 bg-route/10 px-4 py-3 text-sm text-ink"
-                  : "atlas-chart-inset mr-8 px-4 py-3 text-sm"
-              }
-            >
-              <p className="mb-1 font-mono text-[10px] tracking-[0.2em] text-muted uppercase">
-                {isUser ? "You" : "Pushpender (AI)"}
+        <div className={isPanel ? "flex flex-col gap-3" : "portfolio-column flex flex-col gap-4"}>
+          {messages.length === 0 ? (
+            <div className={isPanel ? "atlas-ticket p-4" : "atlas-ticket p-6"}>
+              <p className="text-sm leading-relaxed text-ink/75">
+                Ask about roles, projects, stack, or how to reach me. Answers come from my
+                public profile — this is not me live.
               </p>
-              {isUser ? (
-                <p className="whitespace-pre-wrap">{text}</p>
-              ) : (
-                <div className="twin-markdown">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
-                </div>
-              )}
-            </article>
-          );
-        })}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {SUGGESTED_PROMPTS.map((prompt) => (
+                  <button
+                    key={prompt}
+                    type="button"
+                    onClick={() => submitPrompt(prompt)}
+                    className="border border-grid bg-paper px-3 py-1.5 text-left font-mono text-xs text-ink transition-colors hover:border-route hover:text-route"
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
-        {status === "submitted" ||
-        (status === "streaming" &&
-          !messageText(messages[messages.length - 1]?.parts ?? [])) ? (
-          <p className="font-mono text-xs tracking-wide text-muted">Looking that up…</p>
-        ) : null}
+          {messages.map((message) => {
+            const text = messageText(message.parts);
+            if (!text) {
+              return null;
+            }
 
-        {error ? (
-          <div className="border border-stamp/40 bg-stamp/10 px-4 py-3 text-sm text-ink">
-            <p>Something went wrong. Try again in a moment.</p>
-            <button
-              type="button"
-              onClick={() => regenerate()}
-              className="mt-2 font-mono text-xs text-route underline-offset-2 hover:underline"
-            >
-              Retry
-            </button>
-          </div>
-        ) : null}
+            const isUser = message.role === "user";
+
+            return (
+              <article
+                key={message.id}
+                className={
+                  isUser
+                    ? "ml-8 border border-route/30 bg-route/10 px-4 py-3 text-sm text-ink"
+                    : "atlas-chart-inset mr-8 px-4 py-3 text-sm"
+                }
+              >
+                <p className="mb-1 font-mono text-[10px] tracking-[0.2em] text-muted uppercase">
+                  {isUser ? "You" : "Pushpender (AI)"}
+                </p>
+                {isUser ? (
+                  <p className="whitespace-pre-wrap">{text}</p>
+                ) : (
+                  <div className="twin-markdown">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+                  </div>
+                )}
+              </article>
+            );
+          })}
+
+          {status === "submitted" ||
+          (status === "streaming" &&
+            !messageText(messages[messages.length - 1]?.parts ?? [])) ? (
+            <p className="font-mono text-xs tracking-wide text-muted">Looking that up…</p>
+          ) : null}
+
+          {error ? (
+            <div className="border border-stamp/40 bg-stamp/10 px-4 py-3 text-sm text-ink">
+              <p>Something went wrong. Try again in a moment.</p>
+              <button
+                type="button"
+                onClick={() => regenerate()}
+                className="mt-2 font-mono text-xs text-route underline-offset-2 hover:underline"
+              >
+                Retry
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <form
-        className="sticky bottom-0 z-20 shrink-0 border-t border-grid bg-paper/95 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
+        className={
+          isPanel
+            ? "shrink-0 border-t border-grid bg-paper px-4 py-3"
+            : "portfolio-gutter sticky bottom-0 z-20 shrink-0 border-t border-grid bg-paper/95 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
+        }
         onSubmit={(event) => {
           event.preventDefault();
           submitPrompt(input);
         }}
       >
-        {messages.length >= TWIN_CONTEXT_WINDOW ? (
-          <p className="mx-auto mb-3 max-w-2xl font-mono text-xs text-muted">
-            I only keep the last few questions in mind. Start a new chat if you want a
-            clean slate.
-          </p>
-        ) : null}
-        <div className="mx-auto flex max-w-2xl gap-2">
-          <label className="sr-only" htmlFor="twin-question">
-            Ask a question
-          </label>
-          <input
-            id="twin-question"
-            value={input}
-            onChange={(event) => setInput(event.currentTarget.value)}
-            disabled={error != null}
-            placeholder="Ask about my work, stack, or how to reach me"
-            className="min-w-0 flex-1 border border-grid bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-route focus:outline-none"
-            maxLength={2000}
-          />
-          {busy ? (
-            <button type="button" onClick={() => stop()} className="portfolio-btn-outline px-4 py-3">
-              Stop
-            </button>
-          ) : (
-            <button
-              type="submit"
-              disabled={!input.trim() || error != null}
-              className="portfolio-btn px-5 py-3 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              Ask
-            </button>
-          )}
+        <div className={isPanel ? undefined : "portfolio-column"}>
+          {messages.length >= TWIN_CONTEXT_WINDOW ? (
+            <p className="mb-3 font-mono text-xs text-muted">
+              I only keep the last few questions in mind. Start a new chat if you want a
+              clean slate.
+            </p>
+          ) : null}
+          <div className="flex gap-2">
+            <label className="sr-only" htmlFor={inputId}>
+              Ask a question
+            </label>
+            <input
+              id={inputId}
+              value={input}
+              onChange={(event) => setInput(event.currentTarget.value)}
+              disabled={error != null}
+              placeholder="Ask about my work, stack, or how to reach me"
+              className="min-w-0 flex-1 border border-grid bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-route focus:outline-none"
+              maxLength={2000}
+            />
+            {busy ? (
+              <button type="button" onClick={() => stop()} className="portfolio-btn-outline px-4 py-3">
+                Stop
+              </button>
+            ) : (
+              <button
+                type="submit"
+                disabled={!input.trim() || error != null}
+                className="portfolio-btn px-5 py-3 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Ask
+              </button>
+            )}
+          </div>
         </div>
       </form>
     </div>

@@ -1,6 +1,6 @@
-import SiteNav from "@/components/SiteNav";
 import TwinChat from "@/components/twin/TwinChat";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Ask Pushpender — Public AI Twin",
@@ -11,10 +11,15 @@ export const metadata: Metadata = {
 export default function AskPage() {
   return (
     <div className="portfolio-theme flex h-svh flex-col overflow-hidden">
-      <SiteNav className="shrink-0" />
-      <header className="shrink-0 border-b border-grid px-4 py-4">
-        <div className="mx-auto max-w-2xl">
-          <p className="atlas-label">Public AI twin</p>
+      <header className="portfolio-gutter shrink-0 border-b border-grid py-4">
+        <div className="portfolio-column">
+          <Link
+            href="/"
+            className="font-mono text-[11px] font-medium tracking-[0.14em] text-muted uppercase transition-colors hover:text-ink"
+          >
+            ← Portfolio
+          </Link>
+          <p className="atlas-label mt-3">Public AI twin</p>
           <h1 className="font-display mt-1 text-2xl font-bold tracking-tight text-ink uppercase">
             Ask Pushpender
           </h1>

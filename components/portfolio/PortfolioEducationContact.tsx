@@ -7,8 +7,8 @@ import {
   PROFILE,
   RECOMMENDATIONS,
 } from "@/lib/portfolioData";
+import { useTwinChat } from "@/components/twin/TwinChatWidget";
 import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -25,6 +25,7 @@ const fadeUp = {
 
 export default function PortfolioEducationContact() {
   const reducedMotion = useReducedMotion();
+  const { open } = useTwinChat();
 
   return (
     <section
@@ -76,15 +77,16 @@ export default function PortfolioEducationContact() {
               content: (
                 <ul className="space-y-3 text-sm">
                   <li>
-                    <Link
-                      href="/ask"
+                    <button
+                      type="button"
+                      onClick={open}
                       className="group flex items-center gap-2 text-ink/75 transition-colors hover:text-route"
                     >
                       <span className="inline-block text-stamp transition-transform group-hover:translate-x-1">
                         →
                       </span>
                       Ask my public AI twin
-                    </Link>
+                    </button>
                   </li>
                   <li>
                     <a
