@@ -29,22 +29,22 @@ export default function PortfolioEducationContact() {
   return (
     <section
       id="contact"
-      className="px-6 py-24 lg:pl-20"
+      className="portfolio-gutter scroll-mt-16 py-24"
       aria-label="Summary, education, and contact"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="portfolio-column">
+        <p className="atlas-label">About</p>
+        <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-ink uppercase sm:text-4xl">
+          Summary
+        </h2>
         <motion.div
-          className="atlas-ticket p-8 sm:p-10"
+          className="atlas-ticket mt-8 p-8 sm:p-10"
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.55 }}
         >
-          <p className="atlas-label">About</p>
-          <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-ink uppercase sm:text-3xl">
-            Summary
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-ink/75">
+          <p className="text-base leading-relaxed text-ink/75">
             {PROFILE.summary}
           </p>
           <p className="mt-3 font-mono text-sm text-muted">{PROFILE.location}</p>

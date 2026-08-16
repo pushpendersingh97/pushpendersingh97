@@ -78,47 +78,105 @@ export type FrontendSkill = {
   label: string;
   color: string;
   category: string;
+  /** 1–5. Placeholder values until confirmed — not sourced from a CV. */
+  rating: 1 | 2 | 3 | 4 | 5;
 };
 
+// rating: 4 = core frontend (React, Next.js, TypeScript, Tailwind); 3 = everything else. Confirm before treating as resume facts.
 export const FRONTEND_SKILLS: FrontendSkill[] = [
-  { id: "react", label: "React", color: "#61dafb", category: "UI Library" },
-  { id: "next", label: "Next.js", color: "#ffffff", category: "Framework" },
+  {
+    id: "react",
+    label: "React",
+    color: "#61dafb",
+    category: "UI Library",
+    rating: 4,
+  },
+  {
+    id: "next",
+    label: "Next.js",
+    color: "#ffffff",
+    category: "Framework",
+    rating: 4,
+  },
   {
     id: "typescript",
     label: "TypeScript",
     color: "#3178c6",
     category: "Language",
+    rating: 4,
   },
   {
     id: "tailwind",
     label: "Tailwind CSS",
     color: "#38bdf8",
     category: "Styling",
+    rating: 4,
   },
   {
     id: "framer",
     label: "Framer Motion",
     color: "#bb4b96",
     category: "Animation",
+    rating: 3,
   },
-  { id: "redux", label: "Redux", color: "#764abc", category: "State" },
-  { id: "mui", label: "Material-UI", color: "#007fff", category: "Components" },
-  { id: "angular", label: "Angular", color: "#dd0031", category: "Framework" },
+  {
+    id: "redux",
+    label: "Redux",
+    color: "#764abc",
+    category: "State",
+    rating: 3,
+  },
+  {
+    id: "mui",
+    label: "Material-UI",
+    color: "#007fff",
+    category: "Components",
+    rating: 3,
+  },
+  {
+    id: "angular",
+    label: "Angular",
+    color: "#dd0031",
+    category: "Framework",
+    rating: 3,
+  },
   {
     id: "nodejs",
     label: "Node.js",
     color: "#339933",
     category: "Runtime",
+    rating: 3,
+  },
+  {
+    id: "express",
+    label: "Express",
+    color: "#000000",
+    category: "Runtime",
+    rating: 3,
   },
   {
     id: "sass",
     label: "SASS / SCSS",
     color: "#cd6799",
     category: "Preprocessor",
+    rating: 3,
   },
-  { id: "html", label: "HTML5", color: "#e34f26", category: "Markup" },
-  { id: "css", label: "CSS3", color: "#1572b6", category: "Styling" },
-  { id: "graphql", label: "GraphQL", color: "#e535ab", category: "Data Layer" },
+  { id: "html", label: "HTML5", color: "#e34f26", category: "Markup", rating: 3 },
+  { id: "css", label: "CSS3", color: "#1572b6", category: "Styling", rating: 3 },
+  {
+    id: "graphql",
+    label: "GraphQL",
+    color: "#e535ab",
+    category: "Data Layer",
+    rating: 3,
+  },
+  {
+    id: "mongodb",
+    label: "MongoDB",
+    color: "#47A248",
+    category: "Database",
+    rating: 3,
+  },
 ];
 
 /** @deprecated Use FRONTEND_SKILLS */

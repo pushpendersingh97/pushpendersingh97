@@ -55,13 +55,13 @@ export default function PortfolioStatsStamps() {
     <section
       ref={ref}
       id="ops"
-      className="scroll-mt-16 px-6 py-24 lg:pl-20"
-      aria-label="Career statistics"
+      className="portfolio-gutter scroll-mt-16 py-24"
+      aria-label="Career highlights"
     >
-      <div className="mx-auto max-w-4xl">
-        <p className="atlas-label">Stamped</p>
+      <div className="portfolio-column">
+        <p className="atlas-label">Summary</p>
         <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-ink uppercase sm:text-4xl">
-          By the numbers
+          Highlights
         </h2>
 
         <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">

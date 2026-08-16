@@ -5,10 +5,10 @@ import { useEffect, useRef } from "react";
 
 const WAYPOINTS = [
   { id: "hero", label: "Start" },
-  { id: "skills", label: "Stack" },
-  { id: "work", label: "Work" },
-  { id: "built", label: "Built" },
-  { id: "ops", label: "Ops" },
+  { id: "skills", label: "Skills" },
+  { id: "work", label: "Experience" },
+  { id: "built", label: "Projects" },
+  { id: "ops", label: "Summary" },
   { id: "contact", label: "Contact" },
 ] as const;
 

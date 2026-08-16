@@ -46,6 +46,24 @@ body {
   color: var(--atlas-ink);
 }
 
+/* Shared resume column: max-w-5xl with room for the left route rail at lg */
+.portfolio-gutter {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 64rem) {
+  .portfolio-gutter {
+    padding-left: 5rem;
+  }
+}
+
+.portfolio-column {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 64rem;
+}
+
 .portfolio-grid-bg {
   background-image:
     linear-gradient(rgba(31, 111, 139, 0.07) 1px, transparent 1px),

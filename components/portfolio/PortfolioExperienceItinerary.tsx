@@ -1,7 +1,6 @@
 "use client";
 
 import { EXPERIENCE } from "@/lib/portfolioData";
-import { swatchCode } from "@/lib/swatchColor";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
@@ -10,14 +9,14 @@ export default function PortfolioExperienceItinerary() {
   const [openId, setOpenId] = useState(EXPERIENCE[0].id);
 
   return (
-    <section id="work" className="scroll-mt-16 px-6 py-24 lg:pl-20" aria-label="Experience">
-      <div className="mx-auto max-w-3xl">
-        <p className="atlas-label">Itinerary</p>
+    <section id="work" className="portfolio-gutter scroll-mt-16 py-24" aria-label="Experience">
+      <div className="portfolio-column">
+        <p className="atlas-label">Career</p>
         <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-ink uppercase sm:text-4xl">
-          Filed work
+          Experience
         </h2>
         <p className="mt-2 text-sm text-muted">
-          Open a ticket. Color on the stub is the company code.
+          Work history
         </p>
 
         <ul className="mt-10 space-y-4">
@@ -33,14 +32,11 @@ export default function PortfolioExperienceItinerary() {
                 >
                   <div className="flex">
                     <div
-                      className="atlas-stub relative flex w-[4.75rem] shrink-0 flex-col items-center justify-between py-5 text-white sm:w-24"
+                      className="atlas-stub relative flex w-[4.75rem] shrink-0 flex-col items-center justify-center py-5 text-white sm:w-24"
                       style={{ backgroundColor: job.accent }}
                     >
                       <span className="font-mono text-[10px] tracking-[0.18em]">
                         {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className="font-mono text-[9px] tracking-[0.16em] [writing-mode:vertical-rl] rotate-180">
-                        #{swatchCode(job.accent)}
                       </span>
                     </div>
 

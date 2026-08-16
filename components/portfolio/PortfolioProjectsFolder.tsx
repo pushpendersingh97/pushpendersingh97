@@ -1,7 +1,7 @@
 "use client";
 
 import { PROJECTS } from "@/lib/portfolioData";
-import { swatchCode, swatchColor } from "@/lib/swatchColor";
+import { swatchColor } from "@/lib/swatchColor";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
@@ -12,21 +12,21 @@ export default function PortfolioProjectsFolder() {
   const fill = swatchColor(active.accent ?? "#1f6f8b");
 
   return (
-    <section id="built" className="scroll-mt-16 px-6 py-24 lg:pl-20" aria-label="Projects">
-      <div className="mx-auto max-w-5xl">
-        <p className="atlas-label">Dossier</p>
+    <section id="built" className="portfolio-gutter scroll-mt-16 py-24" aria-label="Projects">
+      <div className="portfolio-column">
+        <p className="atlas-label">Work</p>
         <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-ink uppercase sm:text-4xl">
-          Pull a chip
+          Projects
         </h2>
         <p className="mt-2 max-w-xl text-sm text-muted">
-          Each project is a colored tab on a paper folder. Select a chip to bring that sheet forward.
+          Selected products
         </p>
 
         <div className="mt-10">
           <div
             className="flex gap-1 overflow-x-auto pb-0"
             role="tablist"
-            aria-label="Project color chips"
+            aria-label="Projects"
           >
             {PROJECTS.map((project) => {
               const chip = swatchColor(project.accent ?? "#1f6f8b");
@@ -52,9 +52,6 @@ export default function PortfolioProjectsFolder() {
                     style={{ backgroundColor: chip }}
                     aria-hidden
                   />
-                  <span className="block font-mono text-[9px] tracking-[0.12em] text-muted uppercase">
-                    #{swatchCode(chip)}
-                  </span>
                   <span className="mt-1 block max-w-[7rem] truncate font-display text-xs font-bold text-ink uppercase">
                     {project.name}
                   </span>
@@ -86,21 +83,16 @@ export default function PortfolioProjectsFolder() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <p className="font-mono text-xs" style={{ color: fill }}>
-                      {active.period}
-                    </p>
-                    <h3 className="font-display mt-2 text-2xl font-bold tracking-tight text-ink uppercase sm:text-3xl">
-                      {active.name}
-                    </h3>
-                    {active.company ? (
-                      <p className="mt-1 text-sm text-muted">{active.company}</p>
-                    ) : null}
-                  </div>
-                  <p className="font-mono text-xs tracking-[0.18em] text-route">
-                    REF #{swatchCode(fill)}
+                <div>
+                  <p className="font-mono text-xs" style={{ color: fill }}>
+                    {active.period}
                   </p>
+                  <h3 className="font-display mt-2 text-2xl font-bold tracking-tight text-ink uppercase sm:text-3xl">
+                    {active.name}
+                  </h3>
+                  {active.company ? (
+                    <p className="mt-1 text-sm text-muted">{active.company}</p>
+                  ) : null}
                 </div>
 
                 {active.description ? (

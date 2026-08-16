@@ -27,12 +27,12 @@ export default function PortfolioHero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[calc(100svh-3.5rem)] flex-col justify-center overflow-hidden px-6 py-20 lg:pl-20"
+      className="portfolio-gutter relative flex min-h-[calc(100svh-3.5rem)] flex-col justify-center overflow-hidden py-20"
     >
       <div className="portfolio-grid-bg pointer-events-none absolute inset-0" aria-hidden />
 
       <motion.div
-        className="relative z-10 mx-auto w-full max-w-4xl"
+        className="portfolio-column relative z-10"
         variants={reducedMotion ? undefined : container}
         initial={reducedMotion ? false : "hidden"}
         animate="show"
@@ -115,7 +115,7 @@ export default function PortfolioHero() {
           className="mt-16 flex items-center gap-3"
         >
           <span className="font-mono text-[10px] tracking-[0.25em] text-muted uppercase">
-            Open the dossier
+            Continue
           </span>
           <span className="hero-pulse block h-8 w-px origin-top bg-route" aria-hidden />
         </motion.div>

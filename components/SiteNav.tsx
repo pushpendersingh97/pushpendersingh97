@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 const LINKS = [
   { href: "/", label: "Portfolio" },
   { href: "/ask", label: "Ask" },
-  { href: "/convert", label: "Convert" },
 ] as const;
 
 function isActive(pathname: string, href: string) {
@@ -30,14 +29,14 @@ export default function SiteNav({
 
   return (
     <nav
-      className={`${shell} ${className}`}
+      className={`${shell} ${variant === "paper" ? "portfolio-gutter" : ""} ${className}`}
       aria-label="Site"
     >
       <ul
         className={
           variant === "floating"
             ? "flex flex-wrap items-center gap-0.5"
-            : "mx-auto flex max-w-6xl flex-wrap items-center gap-1 px-4 py-3 sm:px-6"
+            : "portfolio-column flex flex-wrap items-center gap-1 py-3"
         }
       >
         {LINKS.map((link) => {

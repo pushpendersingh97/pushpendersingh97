@@ -6,6 +6,22 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 <!-- END:nextjs-agent-rules -->
 
+## This site is a resume
+
+This project is **Pushpender Singh's resume** on the web — not an experimental portfolio playground.
+
+### Copy and section names
+
+- Prefer standard CV section names and wording: Skills, Experience, Projects, Education, Contact, and similar.
+- Do **not** invent metaphors or cute labels for visitor-facing copy. Avoid names that would not appear on a resume (e.g. Colorway, Sample chips, Itinerary, Filed work, Dossier, Pull a chip).
+- Keep the paper visual system (atlas tickets, color chips, skill logos). Visual motif is not copy: headings, nav, buttons, `aria-label`s, and metadata should read like a CV — professional and accurate.
+- Existing component filenames may still use older names. Do not rename files unless asked. Visitor-facing copy is what must match a resume.
+
+### Facts
+
+- Source of truth: `lib/portfolioData.ts`. Do not invent job titles, dates, metrics, companies, skills, education, or other facts.
+- **Ask before changing factual resume content** (roles, dates, highlights, skills, education, contact, stats). Presentation and visuals may change; biography may not without confirmation.
+
 ## 1. Understand before you act
 
 For any request:
@@ -19,10 +35,11 @@ For any request:
 
 - Scope (which pages, sections, or components?)
 - Design (Figma link, reference site, or match existing styles?)
-- Content (copy, images, CMS vs static?)
+- Content (copy vs. facts in `lib/portfolioData.ts`; images; CMS vs static?)
 - Behavior (animation on scroll vs on load? mobile behavior?)
 - Data (API, env vars, auth?)
 - Acceptance criteria (what does “done” look like?)
+- Factual resume content (titles, dates, metrics, skills) — never invent or silently rewrite biography
 
 Do **not** guess on product, design, or business decisions. Prefer one focused question over a wrong assumption.
 
@@ -91,6 +108,8 @@ If docs conflict with training data, **docs win**.
 | Bug fix            | Reproduce → root cause → minimal fix                              |
 | “How does X work?” | Read code + docs → explain with file references                   |
 | Animation / UI     | Confirm reference → Framer Motion + Tailwind → test scroll/mobile |
+| Resume copy        | CV section names; professional wording; no invented metaphors     |
+| Resume facts       | Read `lib/portfolioData.ts`; ask before changing biography        |
 | Dependency add     | Check compatibility with Next 16 / React 19 → document why        |
 
 ## 6. Output expectations
