@@ -1,28 +1,134 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #e6ebf1;
+  --foreground: #14202c;
+  --atlas-paper: #e6ebf1;
+  --atlas-ink: #14202c;
+  --atlas-grid: #c5d0dc;
+  --atlas-route: #1f6f8b;
+  --atlas-stamp: #d4572a;
+  --atlas-chart: #121a24;
+  --atlas-muted: #5a6b7c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-paper: var(--atlas-paper);
+  --color-ink: var(--atlas-ink);
+  --color-grid: var(--atlas-grid);
+  --color-route: var(--atlas-route);
+  --color-stamp: var(--atlas-stamp);
+  --color-chart: var(--atlas-chart);
+  --color-muted: var(--atlas-muted);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+}
+
+/* ── Atlas / portfolio theme ── */
+
+.portfolio-theme {
+  --portfolio-accent: var(--atlas-route);
+  --portfolio-lime: var(--atlas-stamp);
+  background-color: var(--atlas-paper);
+  color: var(--atlas-ink);
+}
+
+.portfolio-grid-bg {
+  background-image:
+    linear-gradient(rgba(31, 111, 139, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 111, 139, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 85% 75% at 40% 40%, black, transparent);
+}
+
+.portfolio-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--atlas-stamp);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.portfolio-btn:hover {
+  transform: translateY(-1px);
+  background: #c04a22;
+  box-shadow: 0 8px 24px -8px rgba(212, 87, 42, 0.45);
+}
+
+.portfolio-btn-shine {
+  display: none;
+}
+
+.portfolio-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--atlas-ink);
+  border-radius: 2px;
+  background: transparent;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--atlas-ink);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.portfolio-btn-outline:hover {
+  border-color: var(--atlas-route);
+  color: var(--atlas-route);
+  background: rgba(31, 111, 139, 0.06);
+}
+
+.atlas-ticket {
+  border: 1px solid var(--atlas-grid);
+  background: #f2f5f8;
+  box-shadow: 0 1px 0 rgba(20, 32, 44, 0.04);
+}
+
+.atlas-chart-inset {
+  background: var(--atlas-chart);
+  color: #e8eef4;
+  border: 1px solid #1e2a38;
+}
+
+.atlas-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--atlas-route);
+}
+
+.atlas-rule {
+  height: 1px;
+  background: var(--atlas-grid);
 }
 
 .fan-card-center {
@@ -69,47 +175,6 @@ body {
   }
 }
 
-/* ── Portfolio theme ── */
-
-.portfolio-theme {
-  --portfolio-accent: #38bdf8;
-  --portfolio-lime: #c5ff3b;
-}
-
-.portfolio-grid-bg {
-  background-image:
-    linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
-}
-
-.portfolio-gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #c5ff3b 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: portfolio-gradient-shift 6s ease infinite;
-}
-
-@keyframes portfolio-gradient-shift {
-  0%,
-  100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .portfolio-gradient-text {
-    animation: none;
-    background-position: 0% center;
-  }
-}
-
 .twin-markdown p {
   margin: 0.4em 0;
 }
@@ -128,60 +193,14 @@ body {
 }
 
 .twin-markdown a {
-  color: #7dd3fc;
+  color: #7eb8c9;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .twin-markdown strong {
-  color: #f4f4f5;
+  color: #f2f5f8;
   font-weight: 600;
-}
-
-.portfolio-btn {
-  position: relative;
-  overflow: hidden;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-  padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #0a0e14;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.portfolio-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px -8px rgba(56, 189, 248, 0.45);
-}
-
-.portfolio-btn-shine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.35) 50%,
-    transparent 60%
-  );
-  transform: translateX(-100%);
-  animation: portfolio-shine 3s ease infinite;
-}
-
-@keyframes portfolio-shine {
-  0% {
-    transform: translateX(-100%);
-  }
-  40%,
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .portfolio-btn-shine {
-    animation: none;
-  }
 }
 
 .portfolio-marquee-viewport {
@@ -252,10 +271,10 @@ body {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* ── Markdown converter preview ── */
+/* ── Markdown converter preview (chart inset) ── */
 
 .converter-preview {
-  color: #d4d4d8;
+  color: #c5d0dc;
   font-size: 0.875rem;
   line-height: 1.7;
 }
@@ -264,7 +283,7 @@ body {
 .converter-preview h2,
 .converter-preview h3,
 .converter-preview h4 {
-  color: #f4f4f5;
+  color: #e8eef4;
   font-weight: 600;
   line-height: 1.3;
   margin: 1.25em 0 0.5em;
@@ -300,22 +319,22 @@ body {
 }
 
 .converter-preview strong {
-  color: #fafafa;
+  color: #f2f5f8;
 }
 
 .converter-preview code {
-  background: #27272a;
+  background: #1e2a38;
   border-radius: 0.25rem;
-  color: #7dd3fc;
-  font-family: var(--font-geist-mono), monospace;
+  color: #7eb8c9;
+  font-family: var(--font-mono), monospace;
   font-size: 0.85em;
   padding: 0.1em 0.35em;
 }
 
 .converter-preview pre {
-  background: #18181b;
-  border: 1px solid #3f3f46;
-  border-radius: 0.75rem;
+  background: #0c1219;
+  border: 1px solid #2a3848;
+  border-radius: 0.25rem;
   overflow-x: auto;
   padding: 0.875rem 1rem;
 }
@@ -334,18 +353,17 @@ body {
 
 .converter-preview th,
 .converter-preview td {
-  border: 1px solid #3f3f46;
+  border: 1px solid #2a3848;
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
 
 .converter-preview blockquote {
-  border-left: 3px solid #38bdf8;
-  color: #a1a1aa;
+  border-left: 3px solid var(--atlas-route);
+  color: #8a9aab;
   padding-left: 0.875rem;
 }
 
 .converter-preview em {
-  color: #a1a1aa;
+  color: #8a9aab;
 }
-

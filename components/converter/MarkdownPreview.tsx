@@ -18,8 +18,8 @@ export default function MarkdownPreview({ markdown }: MarkdownPreviewProps) {
 
   return (
     <div className="flex h-full min-h-0 flex-col overflow-hidden">
-      <div className="shrink-0 border-b border-zinc-800 px-4 py-3">
-        <h2 className="text-sm font-medium text-zinc-300">Preview</h2>
+      <div className="shrink-0 border-b border-white/10 px-4 py-3">
+        <h2 className="font-mono text-sm font-medium text-white/70">Preview</h2>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4">
         {debounced ? (
@@ -27,7 +27,7 @@ export default function MarkdownPreview({ markdown }: MarkdownPreviewProps) {
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{debounced}</ReactMarkdown>
           </article>
         ) : (
-          <p className="text-sm text-zinc-500">Live preview updates as you edit.</p>
+          <p className="text-sm text-white/40">Live preview updates as you edit.</p>
         )}
       </div>
     </div>

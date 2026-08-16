@@ -4,11 +4,9 @@ import { PROJECTS } from "@/lib/portfolioData";
 import {
   bindScrollProgress,
   mapRange,
-  prefersReducedMotion,
 } from "@/lib/scrollProgress";
-import { useEffect, useRef, useState } from "react";
-
-const ACCENT = "#38bdf8";
+import { useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 type ProjectElements = {
   heading: HTMLElement;
@@ -73,7 +71,7 @@ function applyProjectStyles(elements: ProjectElements, progress: number) {
   elements.counter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
   elements.mockupTitle.textContent = project.name;
   elements.mockupMeta.textContent = project.company ?? project.period;
-  elements.mockup.style.borderTopColor = project.accent ?? ACCENT;
+  elements.mockup.style.borderTopColor = project.accent ?? "#1f6f8b";
   elements.mockup.style.transform = `translateY(${mapRange(progress, [0, 1], [20, -20])}px) rotate(${mapRange(progress, [0, 1], [-1.5, 1.5])}deg)`;
 
   elements.cards.forEach((card, index) => {
@@ -97,11 +95,7 @@ function applyProjectStyles(elements: ProjectElements, progress: number) {
 export default function PortfolioProjectsScroll() {
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setReducedMotion(prefersReducedMotion());
-  }, []);
+  const reducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -137,35 +131,38 @@ export default function PortfolioProjectsScroll() {
 
   if (reducedMotion) {
     return (
-      <section className="px-6 py-24" aria-label="Projects">
+      <section id="built" className="px-6 py-24 lg:pl-20" aria-label="Projects">
         <div className="mx-auto max-w-2xl">
-          <h2 className="text-3xl font-bold text-white">Projects</h2>
+          <p className="atlas-label">Projects</p>
+          <h2 className="font-display mt-3 text-3xl font-bold text-ink uppercase">
+            Built
+          </h2>
           <div className="mt-10 space-y-6">
             {PROJECTS.map((project) => (
               <article
                 key={project.id}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6"
+                className="atlas-ticket p-6"
                 style={{
-                  borderTopColor: project.accent ?? ACCENT,
+                  borderTopColor: project.accent ?? "#1f6f8b",
                   borderTopWidth: 3,
                 }}
               >
-                <p className="text-xs text-sky-400">{project.period}</p>
-                <h3 className="mt-2 text-xl font-semibold text-white">
+                <p className="font-mono text-xs text-route">{project.period}</p>
+                <h3 className="font-display mt-2 text-xl font-semibold text-ink uppercase">
                   {project.name}
                 </h3>
                 {project.company && (
-                  <p className="text-sm text-zinc-500">{project.company}</p>
+                  <p className="text-sm text-muted">{project.company}</p>
                 )}
                 {project.description && (
-                  <p className="mt-3 text-sm text-zinc-400">{project.description}</p>
+                  <p className="mt-3 text-sm text-ink/70">{project.description}</p>
                 )}
                 {project.url && (
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-block text-sm text-sky-400 hover:underline"
+                    className="mt-3 inline-block font-mono text-sm text-route hover:underline"
                   >
                     View on GitHub →
                   </a>
@@ -181,48 +178,50 @@ export default function PortfolioProjectsScroll() {
   return (
     <section
       ref={sectionRef}
+      id="built"
       className="relative h-[720vh] w-full"
       aria-label="Scroll-driven projects"
     >
-      <div className="sticky top-0 flex h-svh items-center justify-center px-6">
+      <div className="sticky top-0 flex h-svh items-center justify-center px-6 lg:pl-20">
         <div
           ref={stageRef}
           className="grid w-full max-w-5xl gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center"
         >
           <div data-proj-part="heading">
-            <h2 className="mb-3 text-3xl font-bold text-white sm:text-4xl">
-              Projects
+            <p className="atlas-label">Projects</p>
+            <h2 className="font-display mt-3 mb-3 text-3xl font-bold text-ink uppercase sm:text-4xl">
+              Built
             </h2>
             <p
               data-proj-part="counter"
-              className="font-mono text-sm text-sky-400"
+              className="font-mono text-sm text-route"
             >
               01 / {String(PROJECTS.length).padStart(2, "0")}
             </p>
-            <div className="mb-4 mt-3 h-0.5 overflow-hidden rounded-full bg-zinc-800">
+            <div className="mb-4 mt-3 h-0.5 overflow-hidden bg-grid">
               <div
                 data-proj-part="progress-fill"
-                className="h-full origin-left rounded-full bg-sky-400 will-change-transform"
+                className="h-full origin-left bg-route will-change-transform"
                 style={{ transform: "scaleX(0)" }}
               />
             </div>
             <div
               data-proj-part="mockup"
-              className="relative aspect-4/3 overflow-hidden rounded-2xl border border-zinc-700/60 bg-zinc-900 will-change-transform"
+              className="atlas-chart-inset relative aspect-4/3 overflow-hidden will-change-transform"
               style={{ borderTopWidth: 3, borderTopColor: PROJECTS[0].accent }}
             >
-              <div className="absolute inset-0 bg-linear-to-br from-zinc-800 to-zinc-950" />
-              <div className="absolute inset-4 rounded-xl border border-dashed border-zinc-700/80" />
+              <div className="absolute inset-0 bg-linear-to-br from-[#1a2432] to-[#0c1219]" />
+              <div className="absolute inset-4 border border-dashed border-white/15" />
               <div className="absolute right-0 bottom-0 left-0 p-5">
                 <p
                   data-proj-part="mockup-title"
-                  className="text-lg font-semibold text-white"
+                  className="font-display text-lg font-semibold tracking-tight text-white uppercase"
                 >
                   {PROJECTS[0].name}
                 </p>
                 <p
                   data-proj-part="mockup-meta"
-                  className="mt-1 text-xs text-zinc-500"
+                  className="mt-1 font-mono text-xs text-white/50"
                 >
                   {PROJECTS[0].company ?? PROJECTS[0].period}
                 </p>
@@ -235,34 +234,34 @@ export default function PortfolioProjectsScroll() {
               <article
                 key={project.id}
                 data-proj-part="card"
-                className="absolute inset-0 rounded-2xl border border-zinc-700/60 bg-zinc-900/90 p-6 shadow-xl backdrop-blur-sm will-change-transform"
+                className="atlas-ticket absolute inset-0 p-6 will-change-transform"
                 style={{
                   opacity: 0,
                   transform: "translate3d(0, 100px, 0) scale(0.9)",
                 }}
               >
                 <p
-                  className="text-xs font-medium"
-                  style={{ color: project.accent ?? ACCENT }}
+                  className="font-mono text-xs font-medium"
+                  style={{ color: project.accent ?? "#1f6f8b" }}
                 >
                   {project.period}
                 </p>
-                <h3 className="mt-2 text-2xl font-bold text-white">
+                <h3 className="font-display mt-2 text-2xl font-bold tracking-tight text-ink uppercase">
                   {project.name}
                 </h3>
                 {project.company && (
-                  <p className="text-sm text-zinc-500">{project.company}</p>
+                  <p className="text-sm text-muted">{project.company}</p>
                 )}
                 {project.description && (
-                  <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+                  <p className="mt-4 text-sm leading-relaxed text-ink/70">
                     {project.description}
                   </p>
                 )}
                 {project.highlights && project.highlights.length > 0 && (
-                  <ul className="mt-4 space-y-2 text-sm text-zinc-500">
+                  <ul className="mt-4 space-y-2 text-sm text-ink/65">
                     {project.highlights.map((h) => (
                       <li key={h} className="flex gap-2">
-                        <span style={{ color: project.accent ?? ACCENT }}>→</span>
+                        <span style={{ color: project.accent ?? "#1f6f8b" }}>→</span>
                         {h}
                       </li>
                     ))}
@@ -273,7 +272,7 @@ export default function PortfolioProjectsScroll() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="rounded-full border border-zinc-700 px-2.5 py-0.5 text-[10px] text-zinc-400"
+                        className="border border-grid px-2.5 py-0.5 font-mono text-[10px] text-muted"
                       >
                         {t}
                       </span>
@@ -285,7 +284,7 @@ export default function PortfolioProjectsScroll() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block text-sm text-sky-400 hover:underline"
+                    className="mt-4 inline-block font-mono text-sm text-route hover:underline"
                   >
                     View on GitHub →
                   </a>

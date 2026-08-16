@@ -1,3 +1,4 @@
+import SiteNav from "@/components/SiteNav";
 import PortfolioEducationContact from "@/components/portfolio/PortfolioEducationContact";
 import PortfolioExperienceScroll from "@/components/portfolio/PortfolioExperienceScroll";
 import PortfolioHero from "@/components/portfolio/PortfolioHero";
@@ -11,12 +12,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pushpender Singh — Full Stack Engineer",
   description:
-    "Animated portfolio showcasing 7+ years of full stack experience with React, Next.js, TypeScript, and modern web architecture.",
+    "Full Stack Engineer and Founding Engineer — 7+ years shipping React, Next.js, TypeScript, and AI-first products.",
 };
 
 export default function Home() {
   return (
-    <div className="portfolio-theme min-h-svh bg-[#0a0e14] text-zinc-100">
+    <div className="portfolio-theme min-h-svh">
+      <SiteNav className="sticky top-0 z-40" />
       <PortfolioScrollProgress />
       <PortfolioHero />
       <PortfolioSkillsFan />

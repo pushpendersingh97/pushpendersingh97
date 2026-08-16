@@ -97,7 +97,7 @@ export default function TwinChat() {
         <button
           type="button"
           onClick={requestNewChat}
-          className="absolute right-4 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] z-30 flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900/90 text-zinc-100 shadow-lg shadow-black/40 backdrop-blur-sm transition-colors hover:border-sky-500/50 hover:text-sky-300"
+          className="absolute right-4 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] z-30 flex h-11 w-11 items-center justify-center border border-grid bg-paper text-ink shadow-sm transition-colors hover:border-route hover:text-route"
           aria-label="New chat"
         >
           <span aria-hidden="true" className="text-2xl leading-none font-light">
@@ -109,7 +109,7 @@ export default function TwinChat() {
       <dialog
         ref={newChatDialogRef}
         aria-labelledby="twin-new-chat-title"
-        className="m-auto w-[min(calc(100%-2rem),24rem)] rounded-3xl border border-zinc-800 bg-[#0a0e14] p-6 text-zinc-100 shadow-2xl outline-none backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(calc(100%-2rem),24rem)] border border-grid bg-paper p-6 text-ink shadow-xl outline-none backdrop:bg-ink/50"
         onClick={(event) => {
           if (event.target === event.currentTarget) {
             event.currentTarget.close();
@@ -117,17 +117,17 @@ export default function TwinChat() {
         }}
       >
         <form method="dialog">
-          <h2 id="twin-new-chat-title" className="text-lg font-semibold tracking-tight">
+          <h2
+            id="twin-new-chat-title"
+            className="font-display text-lg font-bold tracking-tight uppercase"
+          >
             Start a new chat?
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+          <p className="mt-2 text-sm leading-relaxed text-muted">
             This clears the current conversation.
           </p>
           <div className="mt-5 flex justify-end gap-2">
-            <button
-              type="submit"
-              className="rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-sky-500/50 hover:text-sky-300"
-            >
+            <button type="submit" className="portfolio-btn-outline px-4 py-2">
               Cancel
             </button>
             <button type="button" onClick={confirmNewChat} className="portfolio-btn px-4 py-2">
@@ -151,8 +151,8 @@ export default function TwinChat() {
         }}
       >
         {messages.length === 0 ? (
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-900/40 p-6">
-            <p className="text-sm leading-relaxed text-zinc-400">
+          <div className="atlas-ticket p-6">
+            <p className="text-sm leading-relaxed text-ink/75">
               Ask about roles, projects, stack, or how to reach me. Answers come from my
               public profile — this is not me live.
             </p>
@@ -162,7 +162,7 @@ export default function TwinChat() {
                   key={prompt}
                   type="button"
                   onClick={() => submitPrompt(prompt)}
-                  className="rounded-full border border-zinc-700 px-3 py-1.5 text-left text-xs text-zinc-300 transition-colors hover:border-sky-500/50 hover:text-sky-300"
+                  className="border border-grid bg-paper px-3 py-1.5 text-left font-mono text-xs text-ink transition-colors hover:border-route hover:text-route"
                 >
                   {prompt}
                 </button>
@@ -184,11 +184,11 @@ export default function TwinChat() {
               key={message.id}
               className={
                 isUser
-                  ? "ml-8 rounded-2xl border border-sky-500/20 bg-sky-500/10 px-4 py-3 text-sm text-zinc-100"
-                  : "mr-8 rounded-2xl border border-zinc-800 bg-zinc-900/50 px-4 py-3 text-sm text-zinc-300"
+                  ? "ml-8 border border-route/30 bg-route/10 px-4 py-3 text-sm text-ink"
+                  : "atlas-chart-inset mr-8 px-4 py-3 text-sm"
               }
             >
-              <p className="mb-1 text-[10px] tracking-[0.2em] text-zinc-500 uppercase">
+              <p className="mb-1 font-mono text-[10px] tracking-[0.2em] text-muted uppercase">
                 {isUser ? "You" : "Pushpender (AI)"}
               </p>
               {isUser ? (
@@ -203,18 +203,18 @@ export default function TwinChat() {
         })}
 
         {status === "submitted" ||
-          (status === "streaming" &&
-            !messageText(messages[messages.length - 1]?.parts ?? [])) ? (
-          <p className="text-xs tracking-wide text-zinc-500">Looking that up…</p>
+        (status === "streaming" &&
+          !messageText(messages[messages.length - 1]?.parts ?? [])) ? (
+          <p className="font-mono text-xs tracking-wide text-muted">Looking that up…</p>
         ) : null}
 
         {error ? (
-          <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+          <div className="border border-stamp/40 bg-stamp/10 px-4 py-3 text-sm text-ink">
             <p>Something went wrong. Try again in a moment.</p>
             <button
               type="button"
               onClick={() => regenerate()}
-              className="mt-2 text-xs text-sky-300 underline-offset-2 hover:underline"
+              className="mt-2 font-mono text-xs text-route underline-offset-2 hover:underline"
             >
               Retry
             </button>
@@ -223,14 +223,14 @@ export default function TwinChat() {
       </div>
 
       <form
-        className="sticky bottom-0 z-20 shrink-0 border-t border-zinc-800 bg-[#0a0e14]/90 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
+        className="sticky bottom-0 z-20 shrink-0 border-t border-grid bg-paper/95 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
         onSubmit={(event) => {
           event.preventDefault();
           submitPrompt(input);
         }}
       >
         {messages.length >= TWIN_CONTEXT_WINDOW ? (
-          <p className="mx-auto mb-3 max-w-2xl text-xs text-zinc-500">
+          <p className="mx-auto mb-3 max-w-2xl font-mono text-xs text-muted">
             I only keep the last few questions in mind. Start a new chat if you want a
             clean slate.
           </p>
@@ -245,15 +245,11 @@ export default function TwinChat() {
             onChange={(event) => setInput(event.currentTarget.value)}
             disabled={error != null}
             placeholder="Ask about my work, stack, or how to reach me"
-            className="min-w-0 flex-1 rounded-full border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-sky-500/60 focus:outline-none"
+            className="min-w-0 flex-1 border border-grid bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-route focus:outline-none"
             maxLength={2000}
           />
           {busy ? (
-            <button
-              type="button"
-              onClick={() => stop()}
-              className="rounded-full border border-zinc-700 px-4 py-3 text-sm font-medium text-zinc-300 hover:border-sky-500/50 hover:text-sky-300"
-            >
+            <button type="button" onClick={() => stop()} className="portfolio-btn-outline px-4 py-3">
               Stop
             </button>
           ) : (

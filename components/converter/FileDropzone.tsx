@@ -55,25 +55,21 @@ export default function FileDropzone({
     <div
       {...getRootProps()}
       className={[
-        "flex min-h-56 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-10 text-center transition-colors",
-        disabled ? "cursor-not-allowed opacity-60" : "hover:border-sky-400/60",
+        "flex min-h-56 cursor-pointer flex-col items-center justify-center border-2 border-dashed px-6 py-10 text-center transition-colors",
+        disabled ? "cursor-not-allowed opacity-60" : "hover:border-route/70",
         isDragReject
-          ? "border-red-400/70 bg-red-500/5"
+          ? "border-stamp/70 bg-stamp/5"
           : isDragActive
-            ? "border-sky-400 bg-sky-500/10"
-            : "border-zinc-700 bg-zinc-900/40",
+            ? "border-route bg-route/10"
+            : "border-grid bg-paper",
       ].join(" ")}
     >
       <input {...getInputProps()} />
 
-      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800 text-xl">
-        📄
-      </div>
-
-      <p className="text-base font-medium text-zinc-100">
+      <p className="font-display text-lg font-bold tracking-tight text-ink uppercase">
         {isDragActive ? "Drop to convert" : "Drag & drop a document"}
       </p>
-      <p className="mt-2 max-w-sm text-sm text-zinc-400">
+      <p className="mt-2 max-w-sm text-sm text-muted">
         DOCX or PDF · up to {MAX_FILE_SIZE_BYTES / (1024 * 1024)} MB · processed
         entirely in your browser
       </p>
@@ -85,7 +81,7 @@ export default function FileDropzone({
           event.stopPropagation();
           open();
         }}
-        className="mt-5 rounded-full border border-zinc-600 bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-100 transition-colors hover:border-sky-400 hover:text-sky-300 disabled:pointer-events-none"
+        className="portfolio-btn-outline mt-5 disabled:pointer-events-none"
       >
         Choose file
       </button>

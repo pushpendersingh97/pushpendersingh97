@@ -5,9 +5,9 @@ import { applyLinkedLayers, type LinkedLayer } from "@/lib/linkedScrollAnimation
 import {
   bindScrollProgress,
   mapRange,
-  prefersReducedMotion,
 } from "@/lib/scrollProgress";
-import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 function animateCounter(
   element: HTMLElement,
@@ -22,11 +22,7 @@ function animateCounter(
 export default function PortfolioStatsParallax() {
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setReducedMotion(prefersReducedMotion());
-  }, []);
+  const reducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -60,7 +56,7 @@ export default function PortfolioStatsParallax() {
           element: blobBack,
           config: {
             translateY: { input: [0, 1], output: [120, -100] },
-            opacity: { input: [0, 0.15, 0.85, 1], output: [0, 0.4, 0.4, 0.15] },
+            opacity: { input: [0, 0.15, 0.85, 1], output: [0, 0.35, 0.35, 0.12] },
           },
         },
         {
@@ -68,7 +64,7 @@ export default function PortfolioStatsParallax() {
           config: {
             translateY: { input: [0, 1], output: [-80, 140] },
             translateX: { input: [0, 1], output: [-40, 60] },
-            opacity: { input: [0, 0.2, 0.8, 1], output: [0, 0.5, 0.5, 0.2] },
+            opacity: { input: [0, 0.2, 0.8, 1], output: [0, 0.4, 0.4, 0.15] },
           },
         },
         {
@@ -76,7 +72,7 @@ export default function PortfolioStatsParallax() {
           config: {
             rotate: { input: [0, 1], output: [-30, 40] },
             scale: { input: [0, 0.5, 1], output: [0.7, 1, 0.85] },
-            opacity: { input: [0, 0.2, 0.8, 1], output: [0, 0.6, 0.6, 0.25] },
+            opacity: { input: [0, 0.2, 0.8, 1], output: [0, 0.55, 0.55, 0.2] },
           },
         },
         {
@@ -110,18 +106,17 @@ export default function PortfolioStatsParallax() {
 
   if (reducedMotion) {
     return (
-      <section className="px-6 py-24" aria-label="Career statistics">
-        <div className="mx-auto grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-4">
+      <section id="ops" className="px-6 py-24 lg:pl-20" aria-label="Career statistics">
+        <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
           {STATS.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 text-center"
-            >
-              <p className="text-3xl font-bold text-sky-400">
+            <div key={stat.label} className="atlas-ticket p-6 text-center">
+              <p className="font-display text-3xl font-bold text-route">
                 {stat.value}
                 {stat.suffix}
               </p>
-              <p className="mt-2 text-xs text-zinc-500">{stat.label}</p>
+              <p className="mt-2 font-mono text-[10px] tracking-wide text-muted uppercase">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
@@ -132,30 +127,32 @@ export default function PortfolioStatsParallax() {
   return (
     <section
       ref={sectionRef}
+      id="ops"
       className="relative h-[320vh] w-full"
       aria-label="Linked parallax statistics"
     >
-      <div className="sticky top-0 flex h-svh items-center justify-center px-6">
+      <div className="sticky top-0 flex h-svh items-center justify-center px-6 lg:pl-20">
         <div ref={stageRef} className="relative flex h-full w-full max-w-4xl items-center justify-center">
           <div
             data-stat-part="blob-back"
-            className="pointer-events-none absolute top-[20%] left-[15%] h-56 w-56 rounded-full bg-sky-400/10 blur-3xl will-change-transform"
+            className="pointer-events-none absolute top-[20%] left-[15%] h-56 w-56 rounded-full bg-route/15 blur-3xl will-change-transform"
             aria-hidden
           />
           <div
             data-stat-part="blob-front"
-            className="pointer-events-none absolute right-[12%] bottom-[25%] h-40 w-40 rounded-full bg-[#c5ff3b]/10 blur-2xl will-change-transform"
+            className="pointer-events-none absolute right-[12%] bottom-[25%] h-40 w-40 rounded-full bg-stamp/10 blur-2xl will-change-transform"
             aria-hidden
           />
           <div
             data-stat-part="ring"
-            className="pointer-events-none absolute inset-0 m-auto h-[min(70vw,480px)] w-[min(70vw,480px)] rounded-full border border-dashed border-zinc-700 will-change-transform"
+            className="pointer-events-none absolute inset-0 m-auto h-[min(70vw,480px)] w-[min(70vw,480px)] rounded-full border border-dashed border-grid will-change-transform"
             aria-hidden
           />
 
           <div className="relative z-10 w-full">
             <div data-stat-part="headline" className="mb-12 text-center will-change-transform">
-              <h2 className="text-3xl font-bold text-white sm:text-4xl">
+              <p className="atlas-label">Ops</p>
+              <h2 className="font-display mt-3 text-3xl font-bold text-ink uppercase sm:text-4xl">
                 By the numbers
               </h2>
             </div>
@@ -164,15 +161,15 @@ export default function PortfolioStatsParallax() {
               {STATS.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl border border-zinc-700/50 bg-zinc-900/60 p-5 text-center backdrop-blur-sm sm:p-6"
+                  className="atlas-ticket p-5 text-center sm:p-6"
                 >
                   <p
                     data-stat-part="counter"
-                    className="text-3xl font-bold tabular-nums text-sky-400 sm:text-4xl"
+                    className="font-display text-3xl font-bold tabular-nums text-route sm:text-4xl"
                   >
                     0{stat.suffix}
                   </p>
-                  <p className="mt-2 text-[10px] tracking-wide text-zinc-500 uppercase sm:text-xs">
+                  <p className="mt-2 font-mono text-[10px] tracking-wide text-muted uppercase sm:text-xs">
                     {stat.label}
                   </p>
                 </div>

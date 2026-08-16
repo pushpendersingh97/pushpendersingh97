@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import SiteNav from "@/components/SiteNav";
 import ConversionStatus from "@/components/converter/ConversionStatus";
 import FileDropzone from "@/components/converter/FileDropzone";
 import PasteInput from "@/components/converter/PasteInput";
@@ -31,31 +31,22 @@ export default function DocumentConverter() {
     <div
       className={
         showEditor
-          ? "flex h-svh flex-col overflow-hidden bg-[#0a0e14] text-zinc-100"
-          : "min-h-svh bg-[#0a0e14] text-zinc-100"
+          ? "portfolio-theme flex h-svh flex-col overflow-hidden"
+          : "portfolio-theme min-h-svh"
       }
     >
-      <header className="shrink-0 border-b border-zinc-800/80">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5">
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-sky-400/80">
-              Client-side converter
-            </p>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight">
-              DOCX / PDF / Paste → Markdown
-            </h1>
-            <p className="mt-1 max-w-2xl text-sm text-zinc-400">
-              Upload a file or paste rich text from Word, the web, or plain text.
-              Everything runs in your browser — PDF heading detection is
-              best-effort; DOCX tables and lists convert more reliably.
-            </p>
-          </div>
-          <Link
-            href="/"
-            className="rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-sky-400 hover:text-sky-300"
-          >
-            ← Portfolio
-          </Link>
+      <SiteNav className="shrink-0" />
+      <header className="shrink-0 border-b border-grid">
+        <div className="mx-auto max-w-7xl px-6 py-5">
+          <p className="atlas-label">Client-side converter</p>
+          <h1 className="font-display mt-1 text-2xl font-bold tracking-tight text-ink uppercase sm:text-3xl">
+            DOCX / PDF / Paste → Markdown
+          </h1>
+          <p className="mt-2 max-w-2xl text-sm text-muted">
+            Upload a file or paste rich text from Word, the web, or plain text.
+            Everything runs in your browser — PDF heading detection is
+            best-effort; DOCX tables and lists convert more reliably.
+          </p>
         </div>
       </header>
 
@@ -74,11 +65,11 @@ export default function DocumentConverter() {
             />
 
             <div className="flex items-center gap-3">
-              <div className="h-px flex-1 bg-zinc-800" />
-              <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+              <div className="atlas-rule flex-1" />
+              <span className="font-mono text-xs font-medium tracking-wider text-muted uppercase">
                 or
               </span>
-              <div className="h-px flex-1 bg-zinc-800" />
+              <div className="atlas-rule flex-1" />
             </div>
 
             <PasteInput
@@ -89,7 +80,7 @@ export default function DocumentConverter() {
             />
 
             {dropError || state.error ? (
-              <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+              <p className="border border-stamp/40 bg-stamp/10 px-4 py-3 text-sm text-ink">
                 {dropError ?? state.error}
               </p>
             ) : null}
@@ -109,11 +100,9 @@ export default function DocumentConverter() {
         {showEditor ? (
           <div className="flex min-h-0 flex-1 flex-col gap-4">
             <div className="flex shrink-0 flex-wrap items-center justify-between gap-3">
-              <p className="text-sm text-zinc-400">
+              <p className="text-sm text-muted">
                 Source:{" "}
-                <span className="font-medium text-zinc-200">
-                  {state.sourceName}
-                </span>
+                <span className="font-medium text-ink">{state.sourceName}</span>
               </p>
               <Toolbar
                 markdown={state.markdown}
@@ -122,11 +111,11 @@ export default function DocumentConverter() {
               />
             </div>
 
-            <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-2 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/50 lg:grid-cols-2 lg:grid-rows-1">
+            <div className="atlas-chart-inset grid min-h-0 flex-1 grid-cols-1 grid-rows-2 overflow-hidden lg:grid-cols-2 lg:grid-rows-1">
               <div className="min-h-0 overflow-hidden lg:min-h-0">
                 <MarkdownEditor value={state.markdown} onChange={setMarkdown} />
               </div>
-              <div className="min-h-0 overflow-hidden border-t border-zinc-800 lg:border-t-0 lg:border-l">
+              <div className="min-h-0 overflow-hidden border-t border-white/10 lg:border-t-0 lg:border-l">
                 <MarkdownPreview markdown={state.markdown} />
               </div>
             </div>
