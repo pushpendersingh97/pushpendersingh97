@@ -7,14 +7,16 @@ import {
   toUIMessageStream,
   type UIMessage,
 } from "ai";
+import {
+  TWIN_CONTEXT_WINDOW,
+  TWIN_MAX_MESSAGE_CHARS,
+  TWIN_MAX_REQUEST_MESSAGES,
+} from "@/lib/twin/limits";
 import { TWIN_PERSONA } from "@/lib/twin/persona";
 import { consumeRateLimit, getClientIp } from "@/lib/twin/rateLimit";
 import { twinTools } from "@/lib/twin/tools";
 
 export const maxDuration = 30;
-
-const MAX_MESSAGES = 20;
-const MAX_MESSAGE_CHARS = 2000;
 
 function isUiMessage(value: unknown): value is UIMessage {
   if (typeof value !== "object" || value === null) {
@@ -28,8 +30,27 @@ function isUiMessage(value: unknown): value is UIMessage {
   );
 }
 
+function textFromParts(parts: UIMessage["parts"]): string {
+  return parts
+    .filter((part) => part.type === "text")
+    .map((part) => ("text" in part ? part.text : ""))
+    .join("");
+}
+
+function toTextOnlyMessage(message: UIMessage): UIMessage {
+  return {
+    id: message.id,
+    role: message.role,
+    parts: [{ type: "text", text: textFromParts(message.parts) }],
+  };
+}
+
 function sanitizeMessages(input: unknown): UIMessage[] | null {
-  if (!Array.isArray(input) || input.length === 0 || input.length > MAX_MESSAGES) {
+  if (
+    !Array.isArray(input) ||
+    input.length === 0 ||
+    input.length > TWIN_MAX_REQUEST_MESSAGES
+  ) {
     return null;
   }
 
@@ -43,16 +64,24 @@ function sanitizeMessages(input: unknown): UIMessage[] | null {
     return null;
   }
 
-  const lastText = last.parts
-    .filter((part) => part.type === "text")
-    .map((part) => ("text" in part ? part.text : ""))
-    .join("");
-
-  if (lastText.trim().length === 0 || lastText.length > MAX_MESSAGE_CHARS) {
+  const lastText = textFromParts(last.parts);
+  if (
+    lastText.trim().length === 0 ||
+    lastText.length > TWIN_MAX_MESSAGE_CHARS
+  ) {
     return null;
   }
 
-  return messages;
+  const windowed = messages.slice(-TWIN_CONTEXT_WINDOW);
+  const start = windowed[0]?.role === "assistant" ? 1 : 0;
+
+  return windowed
+    .slice(start)
+    .map(toTextOnlyMessage)
+    .filter((message, index, list) => {
+      const text = textFromParts(message.parts).trim();
+      return text.length > 0 || index === list.length - 1;
+    });
 }
 
 export async function POST(request: Request) {
@@ -88,7 +117,10 @@ export async function POST(request: Request) {
   );
 
   if (!messages) {
-    return Response.json({ error: "Send a short question to continue." }, { status: 400 });
+    return Response.json(
+      { error: "Send a short question to continue." },
+      { status: 400 },
+    );
   }
 
   const modelId = process.env.TWIN_MODEL ?? "claude-sonnet-5";
