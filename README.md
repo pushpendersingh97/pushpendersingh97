@@ -40,9 +40,11 @@ Right now that means:
   <img src="https://streak-stats.demolab.com/?user=pushpendersingh97&theme=tokyonight&hide_border=true" alt="GitHub streak" />
 </p>
 
-<p align="center">
+<!-- <p align="center">
   <img src="https://ghchart.rshah.org/pushpendersingh97" alt="Contribution activity graph" />
-</p>
+</p> -->
+
+## GitHub Activity ![GitHub Contribution Graph](https://gitlyy.vercel.app/api/contribution?username=pushpendersingh97&hide_border=true)
 
 ## Connect
 
